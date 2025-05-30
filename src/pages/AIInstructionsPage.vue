@@ -75,7 +75,7 @@
     <q-input v-model="itineraryString" type="textarea" label="Reseplan som JSON" outlined />
 
     <h2>6. Visa reseplan</h2>
-    <q-btn label="Rensa och börja om" to="/itinerary" unelevated color="primary"/>
+    <q-btn label="Visa reseplan" to="/itinerary" unelevated color="primary"/>
 
   </q-page>
 </template>
