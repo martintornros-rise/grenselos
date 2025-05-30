@@ -1,0 +1,77 @@
+import type { Itinerary } from "./models"
+
+export const itineraryTestData =
+{
+  days: [
+    {
+      title: "Dag 1: Ankomst till Dalsland",
+      location: {
+        name: "Vita Sandars Camping, Mellerud",
+        coordinates: [58.6659, 12.5222],
+        description: "En familjevänlig camping med stugor, tältplatser och aktiviteter som äventyrsgolf och ponnyridning.",
+        url: "https://vitasandarscamping.se/camping-mellerud/"
+      },
+      description: "Starta er resa med att installera er på Vita Sandars Camping. Utforska Håverud och den imponerande akvedukten, en järnränna från 1868 som leder båttrafiken över forsarna."
+    },
+    {
+      title: "Dag 2: Vandra i Sörknatten naturreservat",
+      location: {
+        name: "Sörknatten naturreservat",
+        coordinates: [58.9275, 12.4849],
+        description: "Ett kuperat område med gamla skogar, kvartsitryggar och rik flora och fauna.",
+        url: "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/sorknatten.html"
+      },
+      description: "Vandra Sörknattenleden (6,5 km) genom dramatiska bergsryggar och njut av utsikten över sjöarna Djup och Ånimmen."
+    },
+    {
+      title: "Dag 3: Upptäck Tresticklan Nationalpark",
+      location: {
+        name: "Tresticklan Nationalpark",
+        coordinates: [58.9156, 11.6875],
+        description: "Sveriges största väglösa nationalpark med orörd natur, sjöar och myrar.",
+        url: "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/nationalparker/tresticklans-nationalpark.html"
+      },
+      description: "Vandra Bråtaneslingan (8,5 km) och upplev den karga terrängen och den rika djur- och fågellivet."
+    },
+    {
+      title: "Dag 4: Kulturupplevelse i Dals Rostock",
+      location: {
+        name: "Dals Rostock",
+        coordinates: [58.7039, 12.4167],
+        description: "En historisk kurort med Örtagården och Kårehögen.",
+        url: ""
+      },
+      description: "Utforska Dals Rostock, besök Örtagården med sina 350 växter och den gamla kurhusmiljön. Passa även på att se Kårehögen, en järnåldersgrav."
+    },
+    {
+      title: "Dag 5: Vandra på Pilgrimsleden",
+      location: {
+        name: "Pilgrimsleden, Dalsland",
+        coordinates: [58.7000, 12.5000],
+        description: "En vacker vandringsled genom Dalslands landskap.",
+        url: ""
+      },
+      description: "Vandra en del av Pilgrimsleden och njut av den rofyllda naturen och den historiska atmosfären."
+    },
+    {
+      title: "Dag 6: Besök Dalslands konstmuseum",
+      location: {
+        name: "Dalslands konstmuseum, Upperud",
+        coordinates: [58.7575, 12.4583],
+        description: "Ett samtida konstmuseum med utställningar och en vacker park.",
+        url: "https://www.dalslandskonstmuseum.se/"
+      },
+      description: "Besök museet och utforska aktuella utställningar. Ta en promenad i den skulpturprydda parken och njut av utsikten över sjön Spången."
+    },
+    {
+      title: "Dag 7: Avslutning och hemresa",
+      location: {
+        name: "Vita Sandars Camping, Mellerud",
+        coordinates: [58.6659, 12.5222],
+        description: "En familjevänlig camping med stugor, tältplatser och aktiviteter.",
+        url: "https://vitasandarscamping.se/camping-mellerud/"
+      },
+      description: "Avsluta veckan med en lugn morgon i naturen. Ta en sista promenad eller cykeltur innan hemresan till Gothenburg."
+    }
+  ]
+} as Itinerary

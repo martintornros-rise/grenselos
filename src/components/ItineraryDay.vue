@@ -1,0 +1,24 @@
+<template>
+  <div class="row gap-md">
+    <div class="">
+      <iframe width="425" height="350"
+        :src="'https://www.openstreetmap.org/export/embed.html?bbox=' +  (day.location.coordinates[1] - 0.1) + '%2C' + (day.location.coordinates[0] - 0.1) + '%2C' + (day.location.coordinates[1] + 0.1) + '%2C' + (day.location.coordinates[0] + 0.1) + '&amp;layer=mapnik&amp;marker=' + day.location.coordinates[0] + '%2C' + day.location.coordinates[1] + '&amp;marker=' + (day.location.coordinates[0] + 0.05) + '%2C' + day.location.coordinates[1]"
+        style="border: 1px solid black">
+      </iframe>
+    </div>
+    <div class="col">
+      <h2>{{ day.title }}</h2>
+      <a :href="day.location.url" target="_blank">{{ day.location.name }}</a>
+      <p>{{ day.location.description }}</p>
+      <p>{{ day.description }}</p>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import type { DayPlan } from 'src/ts/models/models';
+// import ItineraryLocation from './ItineraryLocation.vue';
+
+defineProps<{day: DayPlan;}>();
+
+</script>

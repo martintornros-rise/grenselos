@@ -1,0 +1,60 @@
+.gap-none {
+    &.row>*:not(:first-child) {
+        margin-left: 0pt;
+    }
+
+    &.column>*:not(:first-child) {
+        margin-top: 0pt;
+    }
+}
+
+.gap-xs {
+    &.row>*:not(:first-child) {
+        margin-left: 4pt;
+    }
+
+    &.column>*:not(:first-child) {
+        margin-top: 4pt;
+    }
+}
+
+
+.gap-sm {
+    &.row>*:not(:first-child) {
+        margin-left: 8pt;
+    }
+
+    &.column>*:not(:first-child) {
+        margin-top: 8pt;
+    }
+}
+
+.gap-md {
+    &.row>*:not(:first-child) {
+        margin-left: 16pt;
+    }
+
+    &.column>*:not(:first-child) {
+        margin-top: 16pt;
+    }
+}
+
+.gap-lg {
+    &.row>*:not(:first-child) {
+        margin-left: 24pt;
+    }
+
+    &.column>*:not(:first-child) {
+        margin-top: 24pt;
+    }
+}
+
+.gap-xl {
+    &.row>*:not(:first-child) {
+        margin-left: 32pt;
+    }
+
+    &.column>*:not(:first-child) {
+        margin-top: 32pt;
+    }
+}
