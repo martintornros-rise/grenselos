@@ -2,76 +2,84 @@ import type { Itinerary } from "./models"
 
 export const itineraryTestData =
 {
-  days: [
+  "title": "Sommarroadtrip Østfold – Dalsland – Bohuslän",
+  "days": [
     {
-      title: "Dag 1: Ankomst till Dalsland",
-      location: {
-        name: "Vita Sandars Camping, Mellerud",
-        coordinates: [58.6659, 12.5222],
-        description: "En familjevänlig camping med stugor, tältplatser och aktiviteter som äventyrsgolf och ponnyridning.",
-        url: "https://vitasandarscamping.se/camping-mellerud/"
+      "title": "Fredriksten Festning & Tistaelva kajak",
+      "location": {
+        "name": "Halden",
+        "coordinates": [59.1241, 11.3871],
+        "country_code": "NO",
+        "description": "Historisk stad vid gränsen till Sverige. Här finns Fredriksten Festning och möjlighet att paddla kajak i Tistaelva.",
+        "url": "https://www.visitoestfold.com/no/halden/"
       },
-      description: "Starta er resa med att installera er på Vita Sandars Camping. Utforska Håverud och den imponerande akvedukten, en järnränna från 1868 som leder båttrafiken över forsarna."
+      "description": "Utforska Fredriksten Festning med utsikt över fjorden. Paddla kajak på Tistaelva genom Halden centrum."
     },
     {
-      title: "Dag 2: Vandra i Sörknatten naturreservat",
-      location: {
-        name: "Sörknatten naturreservat",
-        coordinates: [58.9275, 12.4849],
-        description: "Ett kuperat område med gamla skogar, kvartsitryggar och rik flora och fauna.",
-        url: "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/sorknatten.html"
+      "title": "Vandra i Ytre Hvaler nationalpark",
+      "location": {
+        "name": "Ytre Hvaler nasjonalpark",
+        "coordinates": [59.0303, 10.8666],
+        "country_code": "NO",
+        "description": "Kustnära nationalpark med öar, skär och marina miljöer.",
+        "url": "https://www.nasjonalparker.no/ytre-hvaler/"
       },
-      description: "Vandra Sörknattenleden (6,5 km) genom dramatiska bergsryggar och njut av utsikten över sjöarna Djup och Ånimmen."
+      "description": "Vandra längs Kyststien, bada i vikar och upplev unika kustmiljöer i Norges första marina nationalpark."
     },
     {
-      title: "Dag 3: Upptäck Tresticklan Nationalpark",
-      location: {
-        name: "Tresticklan Nationalpark",
-        coordinates: [58.9156, 11.6875],
-        description: "Sveriges största väglösa nationalpark med orörd natur, sjöar och myrar.",
-        url: "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/nationalparker/tresticklans-nationalpark.html"
+      "title": "Kanotpaddling i Dalslands kanal",
+      "location": {
+        "name": "Upperud / Håverud",
+        "coordinates": [58.8933, 12.4293],
+        "country_code": "SE",
+        "description": "Del av Dalslands kanal – perfekt plats för paddling genom sjöar och slussar.",
+        "url": "https://www.dalslandskanal.se/"
       },
-      description: "Vandra Bråtaneslingan (8,5 km) och upplev den karga terrängen och den rika djur- och fågellivet."
+      "description": "Hyr kanot och paddla längs vackra Dalslands kanal. En naturnära och lugn äventyrsdag för hela familjen."
     },
     {
-      title: "Dag 4: Kulturupplevelse i Dals Rostock",
-      location: {
-        name: "Dals Rostock",
-        coordinates: [58.7039, 12.4167],
-        description: "En historisk kurort med Örtagården och Kårehögen.",
-        url: ""
+      "title": "Dalslands Aktiviteter & älgpark",
+      "location": {
+        "name": "Dalslands Aktiviteter",
+        "coordinates": [58.9482, 12.2967],
+        "country_code": "SE",
+        "description": "Äventyrspark med klättring, ziplines, älgpark och mer.",
+        "url": "https://dalslandsaktiviteter.se/"
       },
-      description: "Utforska Dals Rostock, besök Örtagården med sina 350 växter och den gamla kurhusmiljön. Passa även på att se Kårehögen, en järnåldersgrav."
+      "description": "Testa ziplines, höghöjdsbanor och hälsa på älgar. En aktiv dag i naturskönt område."
     },
     {
-      title: "Dag 5: Vandra på Pilgrimsleden",
-      location: {
-        name: "Pilgrimsleden, Dalsland",
-        coordinates: [58.7000, 12.5000],
-        description: "En vacker vandringsled genom Dalslands landskap.",
-        url: ""
+      "title": "Vandra i Tresticklans nationalpark",
+      "location": {
+        "name": "Tresticklans nationalpark",
+        "coordinates": [59.0833, 11.875],
+        "country_code": "SE",
+        "description": "En av Sveriges mest orörda skogar, perfekt för vildmarksupplevelser.",
+        "url": "https://www.sverigesnationalparker.se/park/tresticklan-nationalpark/"
       },
-      description: "Vandra en del av Pilgrimsleden och njut av den rofyllda naturen och den historiska atmosfären."
+      "description": "Vandra genom tyst urskog, njut av stillheten och ha picknick i vildmarken."
     },
     {
-      title: "Dag 6: Besök Dalslands konstmuseum",
-      location: {
-        name: "Dalslands konstmuseum, Upperud",
-        coordinates: [58.7575, 12.4583],
-        description: "Ett samtida konstmuseum med utställningar och en vacker park.",
-        url: "https://www.dalslandskonstmuseum.se/"
+      "title": "Skärgårdsäventyr på Kosteröarna",
+      "location": {
+        "name": "Kosteröarna",
+        "coordinates": [58.8805, 11.0022],
+        "country_code": "SE",
+        "description": "Bilfria öar med cykelleder, bad och Sveriges enda marina nationalpark.",
+        "url": "https://www.kostermarinapark.se/"
       },
-      description: "Besök museet och utforska aktuella utställningar. Ta en promenad i den skulpturprydda parken och njut av utsikten över sjön Spången."
+      "description": "Ta färja från Strömstad, cykla på öarna och snorkla i det klara vattnet. Perfekt för naturälskare."
     },
     {
-      title: "Dag 7: Avslutning och hemresa",
-      location: {
-        name: "Vita Sandars Camping, Mellerud",
-        coordinates: [58.6659, 12.5222],
-        description: "En familjevänlig camping med stugor, tältplatser och aktiviteter.",
-        url: "https://vitasandarscamping.se/camping-mellerud/"
+      "title": "Klättring & bad i Ramsvikslandet",
+      "location": {
+        "name": "Ramsvikslandet naturreservat",
+        "coordinates": [58.4404, 11.2262],
+        "country_code": "SE",
+        "description": "Naturreservat med klippor, hav och vandringsleder nära Smögen.",
+        "url": "https://www.vastsverige.com/sotenas/produkter/ramsvikslandet/"
       },
-      description: "Avsluta veckan med en lugn morgon i naturen. Ta en sista promenad eller cykeltur innan hemresan till Gothenburg."
+      "description": "Avsluta resan med vandring, klättring på granitklippor och salta bad i Bohusläns skärgård."
     }
   ]
 } as Itinerary

@@ -1,8 +1,9 @@
 export type Location = {
   name: string,
   coordinates: [number,number],
+  country_code: string,
   description: string,
-  url: string
+  url: string,
 }
 
 export type DayPlan = {

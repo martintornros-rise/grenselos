@@ -22,10 +22,9 @@
       <q-input v-model="promptParts.where" type="text" label="Vilket geografiskt område?" outlined >
         <template v-slot:append>
           <q-icon name="add"/>
-          <q-btn label="Jämtland" @click="promptParts.where += 'Jämtland '" dense outline size=""/>
-          <q-btn label="Dalarna" @click="promptParts.where += 'Dalarna '" dense outline size=""/>
-          <q-btn label="Hedmark" @click="promptParts.where += 'Hedmark '" dense outline size=""/>
-          <q-btn label="Sør-Trøndelag" @click="promptParts.where += 'Sør-Trøndelag '" dense outline size=""/>
+          <q-btn label="Østfold" @click="promptParts.where += 'Østfold '" dense outline size=""/>
+          <q-btn label="Dalsland" @click="promptParts.where += 'Dalsland '" dense outline size=""/>
+          <q-btn label="Bohuslän" @click="promptParts.where += 'Bohuslän '" dense outline size=""/>
         </template>
       </q-input>
       <q-input v-model="promptParts.when" type="text" label="Vilken tidsperiod?"
@@ -130,7 +129,7 @@ const prompt = computed({
   set() {}
 })
 
-const promptExport = 'Efter varje nytt förslag som du ger, fråga om användaren vill exportera reseplanen. Om hen svarar ja, exportera reseplanen som JSON enligt:\n\nLocation = {\n"name": string,\n"coordinates": [number,number],\n"description": string,\n"url": string\n}\n\nDayPlan = {\n"title": string,\n"location": Location,\n"description": string,\n}\n\nItinerary = {\n"title": string,\n"days": DayPlan[]\n}"'
+const promptExport = 'När reseplanen är klar, fråga om användaren vill exportera reseplanen. Om hen svarar ja, exportera reseplanen som JSON enligt:\n\nLocation = {\n"name": string,\n"coordinates": [number,number],\n"country_code:string\n"description": string,\n"url": string\n}\n\nDayPlan = {\n"title": string,\n"location": Location,\n"description": string,\n}\n\nItinerary = {\n"title": string,\n"days": DayPlan[]\n}"'
 
 // function copyPrompt () {
 
