@@ -5,8 +5,10 @@
         <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
 
         <q-toolbar-title>
-          Grenseløs
+          {{ $t('project_title') }}
         </q-toolbar-title>
+
+        <LanguagePicker />
 
       </q-toolbar>
     </q-header>
@@ -14,10 +16,11 @@
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
         <q-item-label header>
-          Skapa en reseplan
+          {{$t('itinerary.create')}}
         </q-item-label>
-
-        <EssentialLink v-for="link in linksList" :key="link.title" v-bind="link" class="no-decoration" />
+        <EssentialLink :title="$t('home')" icon="home" link="home" class="no-decoration"/>
+        <EssentialLink :title="$t('itinerary.create')" icon="chat" link="ai" class="no-decoration" />
+        <EssentialLink :title="$t('itinerary.view')" icon="map" link="itinerary" class="no-decoration" />
       </q-list>
     </q-drawer>
 
@@ -29,28 +32,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import EssentialLink, { type EssentialLinkProps } from 'components/EssentialLink.vue';
-
-const linksList: EssentialLinkProps[] = [
-{
-    title: 'Hem',
-    caption: '',
-    icon: 'home',
-    link: '/',
-  },
-{
-    title: 'AI-chat',
-    caption: 'Instruktioner för ChatGPT',
-    icon: 'chat',
-    link: 'ai',
-  },
-  {
-    title: 'Reseplan',
-    caption: 'Visa reseplanen',
-    icon: 'map',
-    link: 'itinerary'
-  },
-];
+import EssentialLink from 'components/EssentialLink.vue';
+import LanguagePicker from 'src/components/LanguagePicker.vue';
 
 const leftDrawerOpen = ref(false);
 

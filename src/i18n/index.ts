@@ -1,5 +1,9 @@
-import enUS from './en-US';
+import svSE from './sv-SE.json';
+import noNO from './no-NO.json';
+import enUS from './en-US.json';
 
 export default {
-  'en-US': enUS
+  'sv': svSE,
+  'no': noNO,
+  'en': enUS,
 };

@@ -2,10 +2,11 @@ import type { RouteRecordRaw } from 'vue-router';
 
 const routes: RouteRecordRaw[] = [
   {
-    path: '/',
+    path: '',
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/IndexPage.vue') },
+      { path: 'home', component: () => import('pages/IndexPage.vue') },
       { path: 'ai', component: () => import('pages/AIInstructionsPage.vue') },
       { path: 'itinerary', component: () => import('pages/ItineraryPage.vue') },
     ],
