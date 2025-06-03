@@ -60,7 +60,7 @@ export const itineraryTestData =
       "description": "Upplev västkustens charm med båttur till öar, havsbad och glass i hamnen."
     },
     {
-      "title": "Dag 6 – Fredriksten fästning & Halden",
+      "title": "Dag 6 – Fredriksten fästning, Halden",
       "location": {
         "name": "Fredriksten festning",
         "coordinates": [59.1230, 11.3874],
@@ -71,15 +71,15 @@ export const itineraryTestData =
       "description": "Vandra bland historiska byggnader och koppla av vid strandpromenaden i Halden."
     },
     {
-      "title": "Dag 7 – Oslo",
+      "title": "Dag 7 – Rød Herregård & Iddefjorden",
       "location": {
-        "name": "Oslo",
-        "coordinates": [59.9139, 10.7522],
+        "name": "Rød Herregård",
+        "coordinates": [59.1212, 11.3836],
         "country_code": "NO",
-        "description": "Norges huvudstad med grönområden, museer och vattennära utflykter för hela familjen.",
-        "url": "https://www.visitoslo.com"
+        "description": "Historisk herrgårdspark i Halden samt närhet till natur- och vattenupplevelser vid Iddefjorden.",
+        "url": "https://ostfoldmuseene.no/avdeling/halden/historiske-halden/rod-herregard"
       },
-      "description": "Avsluta veckan med natur, kultur och lek i Oslo – perfekt för barn och vuxna."
+      "description": "Avsluta med en rofylld promenad i herrgårdsparken eller paddla vid fjorden – ett lugnt och naturnära slut på resan."
     }
   ]
 } as Itinerary
