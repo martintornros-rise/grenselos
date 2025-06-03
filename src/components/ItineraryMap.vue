@@ -54,12 +54,15 @@ onMounted(() => {
 
     props.itinerary.days.forEach(day => {
       if(map){
-        const marker = L.marker([day.location.coordinates[0], day.location.coordinates[1]],{icon: L.icon({iconUrl: 'icons/markers/marker_' + day.location.country_code.toLowerCase() + '.png', iconSize: [32,32]})})
+        const marker = L.marker([day.location.coordinates[0], day.location.coordinates[1]],{icon: L.icon({iconUrl: 'icons/markers/marker_' + day.location.country_code.toLowerCase() + '.png', iconSize: [32,32], iconAnchor: [16,32]})})
         .addTo(map)
         marker.bindPopup(day.location.name)
         markers.value.push(marker)
       }
     })
+
+    // Connect markers
+    L.polyline(markers.value.map(m => m.getLatLng())).addTo(map)
 
     // Set map bounds
     fitBounds()

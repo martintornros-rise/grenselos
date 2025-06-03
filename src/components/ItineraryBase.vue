@@ -4,6 +4,8 @@
 
     <ItineraryMap :itinerary="itinerary"/>
 
+    <q-separator class="q-mt-lg q-mb-lg"/>
+
     <template v-for="(day, i) in itinerary.days" :key="i">
       <ItineraryDay :day="day" />
     </template>
