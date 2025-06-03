@@ -7,7 +7,7 @@
       <div class="col">
         <q-list>
         <template v-for="(day, i) in itinerary.days" :key="i">
-          <q-item clickable @click="selectMarker(i)" dense bg-color="grey" :active="i === selectedMarkerIndex">
+          <q-item clickable @click="markerSelect(i)" @mouseover="markerMouseOver(i)" @mouseleave="markerMouseLeave(i)" dense bg-color="grey" :active="i === selectedMarkerIndex">
             <q-item-section avatar dense>
               <!-- <q-icon name="location_on" /> -->
               {{ i+1 }}.
@@ -56,7 +56,10 @@ onMounted(() => {
       if(map){
         const marker = L.marker([day.location.coordinates[0], day.location.coordinates[1]],{icon: L.icon({iconUrl: 'icons/markers/marker_' + day.location.country_code.toLowerCase() + '.png', iconSize: [32,32], iconAnchor: [16,32]})})
         .addTo(map)
-        marker.bindPopup(day.location.name)
+
+        // Popup
+        marker.bindPopup(day.location.name,{offset: [0,-16],closeButton: false})
+
         markers.value.push(marker)
       }
     })
@@ -77,7 +80,23 @@ function fitBounds() {
   // map.zoomOut()
 }
 
-function selectMarker(i: number){
+function markerMouseOver(i: number){
+  const marker = markers.value[i];
+  if(!marker){ return}
+  marker.openPopup()
+}
+
+function markerMouseLeave(i: number){
+  const marker = markers.value[i];
+  if(!marker){ return}
+  if(i !== selectedMarkerIndex.value){
+    marker.closePopup()
+  }
+}
+
+
+
+function markerSelect(i: number){
   const marker = markers.value[i];
   if(!marker){ return}
   if(i !== selectedMarkerIndex.value){
@@ -99,6 +118,10 @@ function selectMarker(i: number){
 #map {
   width: 100%;
   height: 300px;
+}
+
+.leaflet-popup {
+  position: relative;
 }
 
 </style>
