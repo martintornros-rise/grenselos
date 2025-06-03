@@ -58,7 +58,7 @@ onMounted(() => {
         .addTo(map)
 
         // Popup
-        marker.bindPopup(day.location.name,{offset: [0,-16],closeButton: false})
+        marker.bindPopup(day.title,{offset: [0,-16],closeButton: false})
 
         markers.value.push(marker)
       }
