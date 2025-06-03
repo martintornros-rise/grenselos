@@ -11,8 +11,8 @@
 
     <h2>2. Fyll i information</h2>
     <div class="column gap-sm">
-      <div class="row gap-sm">
-        <h3>Vem?</h3>
+      <div class="row gap-sm items-center">
+        <q-icon name="family_restroom" size="md"/>
         <q-input class="col" v-model="promptParts.who" type="text" label="Vem/vilka önskar information?" outlined >
           <template v-slot:append>
             <q-icon name="add"/>
@@ -21,14 +21,14 @@
           </template>
         </q-input>
       </div>
-      <div class="row gap-sm">
-        <h3>Vad?</h3>
+      <div class="row gap-sm items-center">
+        <q-icon name="info" size="md" />
         <q-input class="col" v-model="promptParts.what" type="text" label="Vilken information önskas?" outlined />
         <q-input class="col" v-model="promptParts.likes" type="text" label="Något särskilt som besökaren gillar?" outlined />
         <q-input class="col" v-model="promptParts.avoid" type="text" label="Något som besökaren vill undvika?" outlined />
       </div>
-      <div class="row gap-sm">
-        <h3>Var?</h3>
+      <div class="row gap-sm items-center">
+        <q-icon name="location_on" size="md" />
         <q-input class="col" v-model="promptParts.where" type="text" label="Vilket geografiskt område?" outlined >
           <template v-slot:append>
             <q-icon name="add"/>
@@ -44,12 +44,12 @@
         </q-input>
         <q-input class="col" v-model="promptParts.whereEnd" type="text" label="Var ska resan sluta?" outlined />
       </div>
-      <div class="row gap-sm">
-        <h3>När?</h3>
+      <div class="row gap-sm items-center">
+        <q-icon name="calendar_month" size="md"/>
         <q-input class="col" v-model="promptParts.when" type="text" label="Vilken tidsperiod?" outlined />
       </div>
-      <div class="row gap-sm">
-        <h3>Extra:</h3>
+      <div class="row gap-sm items-center">
+        <q-icon name="star" size="md"/>
         <q-input class="col" v-model="promptParts.extra" type="text" label="Extra information?" outlined />
       </div>
       <!-- <q-input v-model="prompt" type="textarea" label="Förslag på prompt" /> -->
