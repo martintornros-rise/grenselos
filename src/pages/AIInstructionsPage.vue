@@ -39,7 +39,7 @@
         </q-input>
         <q-input class="col" v-model="promptParts.whereStart" type="text" label="Var ska resan starta?" outlined >
           <template v-slot:append>
-            <q-btn icon="location_on" @click="setCurrentStartLocation" dense outline size=""/>
+            <q-btn icon="location_on" @click="setCurrentStartLocation" dense flat/>
           </template>
         </q-input>
         <q-input class="col" v-model="promptParts.whereEnd" type="text" label="Var ska resan sluta?" outlined />
