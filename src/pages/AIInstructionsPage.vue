@@ -11,27 +11,47 @@
 
     <h2>2. Fyll i information</h2>
     <div class="column gap-sm">
-      <q-input v-model="promptParts.who" type="text" label="Vem/vilka önskar information?" outlined >
-        <template v-slot:append>
-          <q-icon name="add"/>
-          <q-btn label="Familj" @click="promptParts.who += 'Familj '" dense outline size=""/>
-          <q-btn label="Vuxet par" @click="promptParts.who += 'Vuxet par '" dense outline size=""/>
-        </template>
-      </q-input>
-      <q-input v-model="promptParts.what" type="text" label="Vilken information önskas?" outlined />
-      <q-input v-model="promptParts.where" type="text" label="Vilket geografiskt område?" outlined >
-        <template v-slot:append>
-          <q-icon name="add"/>
-          <q-btn label="Østfold" @click="promptParts.where += 'Østfold '" dense outline size=""/>
-          <q-btn label="Dalsland" @click="promptParts.where += 'Dalsland '" dense outline size=""/>
-          <q-btn label="Bohuslän" @click="promptParts.where += 'Bohuslän '" dense outline size=""/>
-        </template>
-      </q-input>
-      <q-input v-model="promptParts.when" type="text" label="Vilken tidsperiod?"
-        outlined />
-      <q-input v-model="promptParts.likes" type="text" label="Något särskilt som besökaren gillar?" outlined />
-      <q-input v-model="promptParts.avoid" type="text" label="Något som besökaren vill undvika?" outlined />
-      <q-input v-model="promptParts.extra" type="text" label="Extra information?" outlined />
+      <div class="row gap-sm">
+        <h3>Vem?</h3>
+        <q-input class="col" v-model="promptParts.who" type="text" label="Vem/vilka önskar information?" outlined >
+          <template v-slot:append>
+            <q-icon name="add"/>
+            <q-btn label="Familj" @click="promptParts.who += 'Familj '" dense outline size=""/>
+            <q-btn label="Vuxet par" @click="promptParts.who += 'Vuxet par '" dense outline size=""/>
+          </template>
+        </q-input>
+      </div>
+      <div class="row gap-sm">
+        <h3>Vad?</h3>
+        <q-input class="col" v-model="promptParts.what" type="text" label="Vilken information önskas?" outlined />
+        <q-input class="col" v-model="promptParts.likes" type="text" label="Något särskilt som besökaren gillar?" outlined />
+        <q-input class="col" v-model="promptParts.avoid" type="text" label="Något som besökaren vill undvika?" outlined />
+      </div>
+      <div class="row gap-sm">
+        <h3>Var?</h3>
+        <q-input class="col" v-model="promptParts.where" type="text" label="Vilket geografiskt område?" outlined >
+          <template v-slot:append>
+            <q-icon name="add"/>
+            <q-btn label="Østfold" @click="promptParts.where += 'Østfold '" dense outline size=""/>
+            <q-btn label="Dalsland" @click="promptParts.where += 'Dalsland '" dense outline size=""/>
+            <q-btn label="Bohuslän" @click="promptParts.where += 'Bohuslän '" dense outline size=""/>
+          </template>
+        </q-input>
+        <q-input class="col" v-model="promptParts.whereStart" type="text" label="Var ska resan starta?" outlined >
+          <template v-slot:append>
+            <q-btn icon="location_on" @click="setCurrentStartLocation" dense outline size=""/>
+          </template>
+        </q-input>
+        <q-input class="col" v-model="promptParts.whereEnd" type="text" label="Var ska resan sluta?" outlined />
+      </div>
+      <div class="row gap-sm">
+        <h3>När?</h3>
+        <q-input class="col" v-model="promptParts.when" type="text" label="Vilken tidsperiod?" outlined />
+      </div>
+      <div class="row gap-sm">
+        <h3>Extra:</h3>
+        <q-input class="col" v-model="promptParts.extra" type="text" label="Extra information?" outlined />
+      </div>
       <!-- <q-input v-model="prompt" type="textarea" label="Förslag på prompt" /> -->
       <q-expansion-item
         expand-separator
@@ -93,6 +113,8 @@ const promptParts = ref({
   who: '',
   what: '',
   where: '',
+  whereStart: '',
+  whereEnd: '',
   when: '',
   likes: '',
   avoid: '',
@@ -109,7 +131,13 @@ const prompt = computed({
       p += "Beskrivning av vad för typ av information önskas: " + promptParts.value.what + "\n\n"
     }
     if(promptParts.value.where){
-      p += "Goegrafiskt område: " + promptParts.value.where + "\n\n"
+      p += "Geografiskt område: " + promptParts.value.where + "\n\n"
+    }
+    if(promptParts.value.whereStart){
+      p += "Resans start: " + promptParts.value.whereStart + "\n\n"
+    }
+    if(promptParts.value.whereEnd){
+      p += "Resans slut:  " + promptParts.value.whereEnd + "\n\n"
     }
     if(promptParts.value.when){
       p += "Tidsperiod: " + promptParts.value.when + "\n\n"
@@ -140,12 +168,20 @@ function reset () {
   who: '',
   what: '',
   where: '',
+  whereStart: '',
+  whereEnd: '',
   when: '',
   likes: '',
   avoid: '',
   extra: '',
 }
   itineraryStore.resetItinerary()
+}
+
+function setCurrentStartLocation(){
+  navigator.geolocation.getCurrentPosition((position) => {
+    promptParts.value.whereStart = position.coords.latitude + ', ' + position.coords.longitude
+});
 }
 
 function startChat () {

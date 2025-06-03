@@ -2,84 +2,84 @@ import type { Itinerary } from "./models"
 
 export const itineraryTestData =
 {
-  "title": "Sommarroadtrip Østfold – Dalsland – Bohuslän",
+  "title": "Sommaräventyr i Västsverige & Østfold – Familjeroadtrip",
   "days": [
     {
-      "title": "Fredriksten Festning & Tistaelva kajak",
+      "title": "Dag 1 – Vita Sannar, Mellerud",
       "location": {
-        "name": "Halden",
-        "coordinates": [59.1241, 11.3871],
-        "country_code": "NO",
-        "description": "Historisk stad vid gränsen till Sverige. Här finns Fredriksten Festning och möjlighet att paddla kajak i Tistaelva.",
-        "url": "https://www.visitoestfold.com/no/halden/"
-      },
-      "description": "Utforska Fredriksten Festning med utsikt över fjorden. Paddla kajak på Tistaelva genom Halden centrum."
-    },
-    {
-      "title": "Vandra i Ytre Hvaler nationalpark",
-      "location": {
-        "name": "Ytre Hvaler nasjonalpark",
-        "coordinates": [59.0303, 10.8666],
-        "country_code": "NO",
-        "description": "Kustnära nationalpark med öar, skär och marina miljöer.",
-        "url": "https://www.nasjonalparker.no/ytre-hvaler/"
-      },
-      "description": "Vandra längs Kyststien, bada i vikar och upplev unika kustmiljöer i Norges första marina nationalpark."
-    },
-    {
-      "title": "Kanotpaddling i Dalslands kanal",
-      "location": {
-        "name": "Upperud / Håverud",
-        "coordinates": [58.8933, 12.4293],
+        "name": "Vita Sannar",
+        "coordinates": [58.7026, 12.4466],
         "country_code": "SE",
-        "description": "Del av Dalslands kanal – perfekt plats för paddling genom sjöar och slussar.",
-        "url": "https://www.dalslandskanal.se/"
+        "description": "Barnvänlig badstrand vid Vänern med aktiviteter som minigolf, cykling och lekplatser.",
+        "url": "https://www.vitasannar.se"
       },
-      "description": "Hyr kanot och paddla längs vackra Dalslands kanal. En naturnära och lugn äventyrsdag för hela familjen."
+      "description": "Starta resan med bad och lek vid Vänerns strand – perfekt för barn och avkoppling."
     },
     {
-      "title": "Dalslands Aktiviteter & älgpark",
+      "title": "Dag 2 – Akvedukten i Håverud & Dalslands kanal",
       "location": {
-        "name": "Dalslands Aktiviteter",
-        "coordinates": [58.9482, 12.2967],
+        "name": "Håverud",
+        "coordinates": [58.8072, 12.4132],
         "country_code": "SE",
-        "description": "Äventyrspark med klättring, ziplines, älgpark och mer.",
-        "url": "https://dalslandsaktiviteter.se/"
+        "description": "Se den unika akvedukten där båtar passerar över en bro med vatten, och ta en tur på Dalslands kanal.",
+        "url": "https://www.vastsverige.com/dalsland/produkter/akvedukten-i-haverud/"
       },
-      "description": "Testa ziplines, höghöjdsbanor och hälsa på älgar. En aktiv dag i naturskönt område."
+      "description": "Utforska ett tekniskt underverk och åk kanalbåt bland slussar och sjöar."
     },
     {
-      "title": "Vandra i Tresticklans nationalpark",
+      "title": "Dag 3 – Tresticklans nationalpark",
       "location": {
-        "name": "Tresticklans nationalpark",
-        "coordinates": [59.0833, 11.875],
+        "name": "Tresticklan Nationalpark",
+        "coordinates": [59.1173, 11.7410],
         "country_code": "SE",
-        "description": "En av Sveriges mest orörda skogar, perfekt för vildmarksupplevelser.",
+        "description": "Orörd vildmark i norra Dalsland med sjöar och lättillgängliga vandringsleder.",
         "url": "https://www.sverigesnationalparker.se/park/tresticklan-nationalpark/"
       },
-      "description": "Vandra genom tyst urskog, njut av stillheten och ha picknick i vildmarken."
+      "description": "Paddla lugnt på småsjöar, vandra bland skogar och upplev stillheten i vildmarken."
     },
     {
-      "title": "Skärgårdsäventyr på Kosteröarna",
+      "title": "Dag 4 – Vitlycke museum, Tanum",
       "location": {
-        "name": "Kosteröarna",
-        "coordinates": [58.8805, 11.0022],
+        "name": "Vitlycke museum",
+        "coordinates": [58.7043, 11.3273],
         "country_code": "SE",
-        "description": "Bilfria öar med cykelleder, bad och Sveriges enda marina nationalpark.",
-        "url": "https://www.kostermarinapark.se/"
+        "description": "Världsarvsområde med bronsåldershällristningar och familjevänligt museum.",
+        "url": "https://www.vitlyckemuseum.se"
       },
-      "description": "Ta färja från Strömstad, cykla på öarna och snorkla i det klara vattnet. Perfekt för naturälskare."
+      "description": "Lär er om bronsåldern, vandra bland hällristningar och delta i aktiviteter på museet."
     },
     {
-      "title": "Klättring & bad i Ramsvikslandet",
+      "title": "Dag 5 – Fjällbacka",
       "location": {
-        "name": "Ramsvikslandet naturreservat",
-        "coordinates": [58.4404, 11.2262],
+        "name": "Fjällbacka",
+        "coordinates": [58.5991, 11.2840],
         "country_code": "SE",
-        "description": "Naturreservat med klippor, hav och vandringsleder nära Smögen.",
-        "url": "https://www.vastsverige.com/sotenas/produkter/ramsvikslandet/"
+        "description": "Skärgårdsidyll med båtturer, små butiker och promenader vid havet.",
+        "url": "https://www.vastsverige.com/fjallbacka/"
       },
-      "description": "Avsluta resan med vandring, klättring på granitklippor och salta bad i Bohusläns skärgård."
+      "description": "Upplev västkustens charm med båttur till öar, havsbad och glass i hamnen."
+    },
+    {
+      "title": "Dag 6 – Fredriksten fästning & Halden",
+      "location": {
+        "name": "Fredriksten festning",
+        "coordinates": [59.1230, 11.3874],
+        "country_code": "NO",
+        "description": "Historisk fästning med utsikt över Halden och lätt att utforska utan branta höjder.",
+        "url": "https://www.visitoestfold.com/no/halden/artikler/fredriksten-festning/"
+      },
+      "description": "Vandra bland historiska byggnader och koppla av vid strandpromenaden i Halden."
+    },
+    {
+      "title": "Dag 7 – Oslo",
+      "location": {
+        "name": "Oslo",
+        "coordinates": [59.9139, 10.7522],
+        "country_code": "NO",
+        "description": "Norges huvudstad med grönområden, museer och vattennära utflykter för hela familjen.",
+        "url": "https://www.visitoslo.com"
+      },
+      "description": "Avsluta veckan med natur, kultur och lek i Oslo – perfekt för barn och vuxna."
     }
   ]
 } as Itinerary
