@@ -157,7 +157,7 @@ const prompt = computed({
   set() {}
 })
 
-const promptExport = 'När reseplanen är klar, fråga om användaren vill exportera reseplanen. Om hen svarar ja, exportera reseplanen som JSON enligt:\n\nLocation = {\n"name": string,\n"coordinates": [number,number],\n"country_code:string\n"description": string,\n"url": string\n}\n\nDayPlan = {\n"title": string,\n"location": Location,\n"description": string,\n}\n\nItinerary = {\n"title": string,\n"days": DayPlan[]\n}"'
+const promptExport = 'När reseplanen är klar, fråga om användaren vill exportera reseplanen. Om hen svarar ja, exportera reseplanen som JSON enligt:\n\nLocation = {"name": string, "coordinates": [number,number], "country_code": string, "description": string, "url": string}\n\nDayPlan = {"title": string, "location": Location, "description": string}\n\nItinerary = {"title": string,"days": DayPlan[]}"'
 
 // function copyPrompt () {
 
@@ -185,7 +185,7 @@ function setCurrentStartLocation(){
 }
 
 function startChat () {
-  window.open('https://chat.openai.com/?model=gpt-4&q=' + prompt.value)
+  window.open(encodeURI('https://chat.openai.com/?model=gpt-4&q=' + prompt.value))
 }
 
 const itineraryString = computed({
