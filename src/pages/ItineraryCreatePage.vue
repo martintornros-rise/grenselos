@@ -23,39 +23,52 @@
     <h2>1. Fyll i information</h2>
 
     <div class="column gap-sm">
+
       <div class="row gap-sm items-center">
         <q-icon name="family_restroom" size="md"/>
-        <q-input class="col" v-model="promptParts.who" type="text" label="Vem/vilka önskar information?" outlined >
-          <template v-slot:append>
-            <q-icon name="add" color="grey"/>
-            <q-btn label="Familj" @click="promptParts.who += 'Familj '" dense unelevated color="grey-2" text-color="grey"/>
-            <q-btn label="Vuxet par" @click="promptParts.who += 'Vuxet par '" dense unelevated color="grey-2" text-color="grey"/>
-          </template>
-        </q-input>
+        <div class="col row gap-sm items-start">
+          <div class="col column gap-xs">
+            <q-input class="col" v-model="promptParts.who" type="text" label="Vem/vilka önskar information?" outlined />
+            <div class="row gap-xs items-center text-body2">
+              <span class="text-grey-8">Lägg till:</span>
+              <template v-for="o in whoOptions" :key="o">
+                <q-btn :label="o" @click="promptParts.who += (o + ', ')" dense unelevated text-color="grey-8" color="grey-2" no-caps/>
+              </template>
+            </div>
+          </div>
+        </div>
       </div>
+
       <div class="row gap-sm items-center">
         <q-icon name="info" size="md" />
-        <q-input class="col" v-model="promptParts.what" type="text" label="Vilken information önskas?" outlined />
-        <q-input class="col" v-model="promptParts.likes" type="text" label="Något särskilt som besökaren gillar?" outlined />
-        <q-input class="col" v-model="promptParts.avoid" type="text" label="Något som besökaren vill undvika?" outlined />
+        <div class="col row gap-sm items-start">
+          <q-input class="col" v-model="promptParts.what" type="text" label="Vilken information önskas?" outlined />
+          <q-input class="col" v-model="promptParts.likes" type="text" label="Något särskilt som besökaren gillar?" outlined />
+          <q-input class="col" v-model="promptParts.avoid" type="text" label="Något som besökaren vill undvika?" outlined />
+        </div>
       </div>
+
       <div class="row gap-sm items-center">
         <q-icon name="location_on" size="md" />
-        <q-input class="col" v-model="promptParts.where" type="text" label="Vilket geografiskt område?" outlined >
-          <template v-slot:append>
-            <q-icon name="add" color="grey"/>
-            <q-btn label="Østfold" @click="promptParts.where += 'Østfold '" dense unelevated color="grey-2" text-color="grey"/>
-            <q-btn label="Dalsland" @click="promptParts.where += 'Dalsland '" dense unelevated color="grey-2" text-color="grey"/>
-            <q-btn label="Bohuslän" @click="promptParts.where += 'Bohuslän '" dense unelevated color="grey-2" text-color="grey"/>
-          </template>
-        </q-input>
-        <q-input class="col" v-model="promptParts.whereStart" type="text" label="Var ska resan starta?" outlined >
-          <template v-slot:append>
-            <q-btn icon="location_on" @click="setCurrentStartLocation" dense flat/>
-          </template>
-        </q-input>
-        <q-input class="col" v-model="promptParts.whereEnd" type="text" label="Var ska resan sluta?" outlined />
+        <div class="col row gap-sm items-start">
+          <div class="col column gap-xs">
+            <q-input class="col" v-model="promptParts.where" type="text" label="Vilket geografiskt område?" outlined />
+            <div class="row gap-xs items-center text-body2">
+              <span class="text-grey-8">Lägg till:</span>
+              <template v-for="o in whereOptions" :key="o">
+                <q-btn :label="o" @click="promptParts.where += (o + ', ')" dense unelevated text-color="grey-8" color="grey-2" no-caps/>
+              </template>
+            </div>
+          </div>
+          <q-input class="col" v-model="promptParts.whereStart" type="text" label="Var ska resan starta?" outlined >
+            <template v-slot:append>
+              <q-btn icon="location_on" @click="setCurrentStartLocation" dense flat/>
+            </template>
+          </q-input>
+          <q-input class="col" v-model="promptParts.whereEnd" type="text" label="Var ska resan sluta?" outlined />
+        </div>
       </div>
+
       <div class="row gap-sm items-center">
         <q-icon name="calendar_month" size="md"/>
         <q-input class="col" v-model="promptParts.when" type="text" label="Vilken tidsperiod?" outlined />
@@ -141,6 +154,11 @@ const promptParts = ref({
   avoid: '',
   extra: '',
 })
+
+const whoOptions = ['Familj', 'Vuxet par']
+const whereOptions = ['Østfold', 'Dalsland', 'Bohuslän']
+// const whereSelected = ref([] as string[])
+
 // const prompt = 'En familj på 2 vuxna och 2 tonåringar kommer vara en vecka i dalsland och gränserna mot norge. de gillar äventyr men är rädda för vatten. ge förslag på en rutt med en aktivitet per dag. de tältar om det behövs men sover gärna bekvämt. de gillar fiskpinnar.'
 const prompt = computed({
   get () {
