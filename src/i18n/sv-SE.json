@@ -1,8 +1,8 @@
 {
   "project_title": "Gränslös",
   "home": "Hem",
-  "itinerary": {
-    "create": "Skapa reseplan",
-    "view": "Visa reseplan"
-  }
+  "itinerary.create.clear_warning": "Tidigare ifylld information kommer att försvinna.",
+  "itinerary.create": "Skapa reseplan",
+  "itinerary.create.view": "Visa reseplan",
+  "itinerary.create.new": "Skapa ny reseplan"
 }

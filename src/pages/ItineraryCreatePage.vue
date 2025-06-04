@@ -1,10 +1,10 @@
 <template>
   <q-page class="q-ma-md">
 
-    <h1>AI instruktioner</h1>
+    <h1>{{ $t('itinerary.create.new') }}</h1>
 
-    <h2>1. Skapa ny reseplan</h2>
-    <p>All ifylld information kommer att försvinna.</p>
+    <h2>1. {{$t('itinerary.create.new')}}</h2>
+    <p>{{$t('itinerary.create.clear_warning')}}</p>
     <q-btn label="Skapa ny reseplan" @click="reset" unelevated color="primary"/>
 
     <q-separator class="q-mt-lg q-mb-lg"/>

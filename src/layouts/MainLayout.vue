@@ -19,7 +19,7 @@
           {{$t('itinerary.create')}}
         </q-item-label>
         <EssentialLink :title="$t('home')" icon="home" link="home" class="no-decoration"/>
-        <EssentialLink :title="$t('itinerary.create')" icon="chat" link="ai" class="no-decoration" />
+        <EssentialLink :title="$t('itinerary.create')" icon="chat" link="create" class="no-decoration" />
         <EssentialLink :title="$t('itinerary.view')" icon="map" link="itinerary" class="no-decoration" />
       </q-list>
     </q-drawer>
