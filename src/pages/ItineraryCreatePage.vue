@@ -1,7 +1,7 @@
 <template>
   <q-page class="q-ma-md">
 
-    <h1>{{ $t('itinerary.create.new') }}</h1>
+    <h1>{{ $t('itinerary.create') }}</h1>
 
     <h2>1. {{$t('itinerary.create.new')}}</h2>
     <p>{{$t('itinerary.create.clear_warning')}}</p>

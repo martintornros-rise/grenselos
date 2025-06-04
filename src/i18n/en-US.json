@@ -3,6 +3,6 @@
   "home": "Home",
   "itinerary.create.clear_warning": "Currently filled information will be cleared.",
   "itinerary.create": "Create itinerary",
-  "itinerary.create.view": "Show new itinerary",
-  "itinerary.create.new": "Create new itinerary"
+  "itinerary.create.new": "Create new itinerary",
+  "itinerary.view": "Show new itinerary"
 }

@@ -3,6 +3,6 @@
   "home": "Hjem",
   "itinerary.create.clear_warning": "Tidligere utfylt informasjon vil forsvinne.",
   "itinerary.create": "Lag reiserute",
-  "itinerary.create.view": "Se reiseruten",
-  "itinerary.create.new": "Opprett ny reiserute"
+  "itinerary.create.new": "Opprett ny reiserute",
+  "itinerary.view": "Se reiseruten"
 }

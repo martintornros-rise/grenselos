@@ -3,6 +3,6 @@
   "home": "Hem",
   "itinerary.create.clear_warning": "Tidigare ifylld information kommer att försvinna.",
   "itinerary.create": "Skapa reseplan",
-  "itinerary.create.view": "Visa reseplan",
-  "itinerary.create.new": "Skapa ny reseplan"
+  "itinerary.create.new": "Skapa ny reseplan",
+  "itinerary.view": "Visa reseplan"
 }
