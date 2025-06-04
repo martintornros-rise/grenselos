@@ -1,23 +1,35 @@
 <template>
   <q-page class="q-ma-md">
 
-    <h1>{{ $t('itinerary.create') }}</h1>
+    <div class="row justify-between items-center">
 
-    <h2>1. {{$t('itinerary.create.new')}}</h2>
-    <p>{{$t('itinerary.create.clear_warning')}}</p>
-    <q-btn label="Skapa ny reseplan" @click="reset" unelevated color="primary"/>
+      <h1>{{ $t('itinerary.create') }}</h1>
+      <div class="text-right">
 
-    <q-separator class="q-mt-lg q-mb-lg"/>
+        <q-btn icon="refresh" :label="$t('itinerary.create.new')" @click="reset" unelevated color="primary" />
+        <!-- <p>{{$t('itinerary.create.clear_warning')}}</p> -->
+      </div>
+    </div>
 
-    <h2>2. Fyll i information</h2>
+    <!-- <h2>1. {{$t('itinerary.create.new')}}</h2> -->
+
+    <!-- <div class="row gap-sm items-center">
+      <q-btn @click="reset" unelevated color="primary">{{ $t('itinerary.create.new') }}</q-btn>
+      <div>{{$t('itinerary.create.clear_warning')}}</div>
+    </div>
+
+    <q-separator class="q-mt-lg q-mb-lg"/> -->
+
+    <h2>1. Fyll i information</h2>
+
     <div class="column gap-sm">
       <div class="row gap-sm items-center">
         <q-icon name="family_restroom" size="md"/>
         <q-input class="col" v-model="promptParts.who" type="text" label="Vem/vilka önskar information?" outlined >
           <template v-slot:append>
-            <q-icon name="add"/>
-            <q-btn label="Familj" @click="promptParts.who += 'Familj '" dense outline size=""/>
-            <q-btn label="Vuxet par" @click="promptParts.who += 'Vuxet par '" dense outline size=""/>
+            <q-icon name="add" color="grey"/>
+            <q-btn label="Familj" @click="promptParts.who += 'Familj '" dense unelevated color="grey-2" text-color="grey"/>
+            <q-btn label="Vuxet par" @click="promptParts.who += 'Vuxet par '" dense unelevated color="grey-2" text-color="grey"/>
           </template>
         </q-input>
       </div>
@@ -31,10 +43,10 @@
         <q-icon name="location_on" size="md" />
         <q-input class="col" v-model="promptParts.where" type="text" label="Vilket geografiskt område?" outlined >
           <template v-slot:append>
-            <q-icon name="add"/>
-            <q-btn label="Østfold" @click="promptParts.where += 'Østfold '" dense outline size=""/>
-            <q-btn label="Dalsland" @click="promptParts.where += 'Dalsland '" dense outline size=""/>
-            <q-btn label="Bohuslän" @click="promptParts.where += 'Bohuslän '" dense outline size=""/>
+            <q-icon name="add" color="grey"/>
+            <q-btn label="Østfold" @click="promptParts.where += 'Østfold '" dense unelevated color="grey-2" text-color="grey"/>
+            <q-btn label="Dalsland" @click="promptParts.where += 'Dalsland '" dense unelevated color="grey-2" text-color="grey"/>
+            <q-btn label="Bohuslän" @click="promptParts.where += 'Bohuslän '" dense unelevated color="grey-2" text-color="grey"/>
           </template>
         </q-input>
         <q-input class="col" v-model="promptParts.whereStart" type="text" label="Var ska resan starta?" outlined >
@@ -73,14 +85,14 @@
 
     <q-separator class="q-mt-lg q-mb-lg"/>
 
-    <h2>3. Starta chatten</h2>
+    <h2>2. Starta chatten</h2>
     <p>Starta konversation med AI-chattboten.</p>
     <p>Den ifyllda informationen / prompten skickas med automatiskt, tillsammans med andra instruktioner som hjälper dig att skapa en reseplan.</p>
-    <q-btn @click="startChat" unelevated color="primary">Starta chatt</q-btn>
+    <q-btn icon="smart_toy" label="Starta chatt" @click="startChat" unelevated color="primary" />
 
     <q-separator class="q-mt-lg q-mb-lg"/>
 
-    <h2>4. Exportera en reseplan</h2>
+    <h2>3. Exportera en reseplan</h2>
     <p>
       När ni är nöjda med förslagen kan AI:n hjälpa att skapa en reseplan.
     </p>
@@ -90,22 +102,31 @@
 
     <q-separator class="q-mt-lg q-mb-lg"/>
 
-    <h2>5. Klistra in resultatet</h2>
-    <q-input v-model="itineraryString" type="textarea" label="Reseplan som JSON" outlined />
+    <h2>4. Klistra in resultatet</h2>
+    <!-- <q-input v-model="itineraryString" type="textarea" label="Reseplan som JSON" outlined /> -->
+     <div class="row gap-sm items-center">
+      <q-btn icon="content_paste" :label="$t('paste')" @click="pasteItinerary" unelevated color="primary" />
+      <span v-if="parseResult === true" class="text-positive">Reseplanen är skapad</span>
+      <span v-else-if="parseResult === false" class="text-negative">Det gick inte att skapa reseplanen, försök igen.</span>
+    </div>
 
-    <h2>6. Visa reseplan</h2>
-    <q-btn label="Visa reseplan" to="/itinerary" unelevated color="primary"/>
+    <!-- {{ text }} -->
+
+    <h2>5. Visa reseplan</h2>
+    <q-btn icon="map" :label="$t('itinerary.view')" to="/itinerary" unelevated color="primary" class="no-decoration"/>
 
   </q-page>
 </template>
 
 <script setup lang="ts">
 import { useItineraryStore } from 'src/stores/itineraryStore';
+// import { Itinerary } from 'src/ts/models/models';
 import { computed, ref } from 'vue';
 // import { useClipboard } from '@vueuse/core'
+// import { Itinerary } from 'src/ts/models/models';
 
 // const source = ref('')
-// const { copy, copied } = useClipboard({ source })
+// const { text } = useClipboard({ source })
 
 const itineraryStore = useItineraryStore()
 
@@ -188,15 +209,26 @@ function startChat () {
   window.open(encodeURI('https://chat.openai.com/?model=gpt-4&q=' + prompt.value))
 }
 
-const itineraryString = computed({
-  get(){
-    return itineraryStore.itinerary ? JSON.stringify(itineraryStore.itinerary) : ''
-  },
-  set (value: string) {
-    itineraryStore.itinerary = value ? JSON.parse(value) : undefined
-  }
+// const itineraryString = computed({
+//   get(){
+//     return itineraryStore.itinerary ? JSON.stringify(itineraryStore.itinerary) : ''
+//   },
+//   set (value: string) {
+//     itineraryStore.itinerary = value ? JSON.parse(value) : undefined
+//   }
 
-})
+// })
+const parseResult = ref(undefined as true | false | undefined)
+async function pasteItinerary() {
+  const text = await navigator.clipboard.readText();
+  try {
+    itineraryStore.itinerary = JSON.parse(text)
+    parseResult.value = true
+  }
+  catch {
+    parseResult.value = false
+  }
+}
 
 </script>
 

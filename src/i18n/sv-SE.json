@@ -4,5 +4,6 @@
   "itinerary.create.clear_warning": "Tidigare ifylld information kommer att försvinna.",
   "itinerary.create": "Skapa reseplan",
   "itinerary.create.new": "Skapa ny reseplan",
-  "itinerary.view": "Visa reseplan"
+  "itinerary.view": "Visa reseplan",
+  "paste": "Klistra in JSON"
 }

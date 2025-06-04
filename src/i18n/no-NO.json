@@ -4,5 +4,6 @@
   "itinerary.create.clear_warning": "Tidligere utfylt informasjon vil forsvinne.",
   "itinerary.create": "Lag reiserute",
   "itinerary.create.new": "Opprett ny reiserute",
-  "itinerary.view": "Se reiseruten"
+  "itinerary.view": "Se reiseruten",
+  "paste": "Lim inn json"
 }
