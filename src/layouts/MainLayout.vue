@@ -1,8 +1,8 @@
 <template>
-  <q-layout view="hhh Lpr lFf" class="relative-position">
+  <q-layout view="hHh Lpr lFf" class="relative-position">
     <q-header id="header">
       <q-toolbar id="headerMenu">
-        <q-btn flat dense round icon="map" aria-label="Menu" to="home" class="no-decoration" />
+        <q-btn flat dense round icon="map" aria-label="Menu" class="no-decoration" @click="toggleLeftDrawer" />
 
         <q-toolbar-title>
           {{ $t('project_title') }}
@@ -54,17 +54,18 @@ function toggleLeftDrawer () {
 <style lang="scss" scoped>
 
 #header {
-  height: 200px;
+  // height: 200px;
   background-image: url('/img/Svinesund_bruene.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: bottom;
 }
 
 #headerMenu {
   position: sticky;
   top: 0;
-  mix-blend-mode: difference;
-  background-color: rgba(0,0,0,1);
+  color: white;
+  // mix-blend-mode: difference;
+  // background-color: rgba(0,0,0,1);
 }
 
 </style>
