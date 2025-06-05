@@ -26,56 +26,44 @@
 
       <div class="row gap-sm items-center">
         <q-icon name="family_restroom" size="md"/>
-        <div class="col row gap-sm items-start">
-          <div class="col column gap-xs">
-            <q-input class="col" v-model="promptParts.who" type="text" label="Vem/vilka önskar information?" outlined />
-            <div class="row gap-xs items-center text-body2">
-              <span class="text-grey-8">Lägg till:</span>
-              <template v-for="o in whoOptions" :key="o">
-                <q-btn :label="o" @click="promptParts.who += (o + ', ')" dense unelevated text-color="grey-8" color="grey-2" no-caps/>
-              </template>
-            </div>
-          </div>
+        <div class="col row gap-sm">
+          <FormField v-model="promptParts.who" label="Vem/vilka önskar information?" :options="['Familj', 'Vuxet par']"/>
         </div>
       </div>
 
       <div class="row gap-sm items-center">
         <q-icon name="info" size="md" />
-        <div class="col row gap-sm items-start">
-          <q-input class="col" v-model="promptParts.what" type="text" label="Vilken information önskas?" outlined />
-          <q-input class="col" v-model="promptParts.likes" type="text" label="Något särskilt som besökaren gillar?" outlined />
-          <q-input class="col" v-model="promptParts.avoid" type="text" label="Något som besökaren vill undvika?" outlined />
+        <div class="col row gap-sm">
+          <FormField v-model="promptParts.what" label="Vilken information önskas?"/>
+          <FormField v-model="promptParts.likes" label="Något särskilt som besökaren gillar?"/>
+          <FormField v-model="promptParts.avoid" label="Något som besökaren vill undvika?"/>
         </div>
       </div>
 
       <div class="row gap-sm items-center">
         <q-icon name="location_on" size="md" />
-        <div class="col row gap-sm items-start">
-          <div class="col column gap-xs">
-            <q-input class="col" v-model="promptParts.where" type="text" label="Vilket geografiskt område?" outlined />
-            <div class="row gap-xs items-center text-body2">
-              <span class="text-grey-8">Lägg till:</span>
-              <template v-for="o in whereOptions" :key="o">
-                <q-btn :label="o" @click="promptParts.where += (o + ', ')" dense unelevated text-color="grey-8" color="grey-2" no-caps/>
-              </template>
-            </div>
-          </div>
-          <q-input class="col" v-model="promptParts.whereStart" type="text" label="Var ska resan starta?" outlined >
+        <div class="col row gap-sm">
+          <FormField v-model="promptParts.where" label="Vilket geografiskt område?" :options="['Østfold', 'Dalsland', 'Bohuslän']"/>
+          <FormField v-model="promptParts.whereStart" label="Var ska resan starta?">
             <template v-slot:append>
               <q-btn icon="location_on" @click="setCurrentStartLocation" dense flat/>
             </template>
-          </q-input>
-          <q-input class="col" v-model="promptParts.whereEnd" type="text" label="Var ska resan sluta?" outlined />
+          </FormField>
+          <FormField v-model="promptParts.whereEnd" label="Var ska resan sluta?"/>
         </div>
       </div>
 
       <div class="row gap-sm items-center">
         <q-icon name="calendar_month" size="md"/>
-        <q-input class="col" v-model="promptParts.when" type="text" label="Vilken tidsperiod?" outlined />
+        <div class="col row gap-sm">
+          <FormField v-model="promptParts.when" label="Vilken tidsperiod?"/>
+        </div>
       </div>
       <div class="row gap-sm items-center">
         <q-icon name="star" size="md"/>
-        <q-input class="col" v-model="promptParts.extra" type="text" label="Extra information?" outlined />
+        <div class="col row gap-sm">
+          <FormField v-model="promptParts.extra" label="Extra information?"/>
+        </div>
       </div>
       <!-- <q-input v-model="prompt" type="textarea" label="Förslag på prompt" /> -->
       <q-expansion-item
@@ -101,7 +89,10 @@
     <h2>2. Starta chatten</h2>
     <p>Starta konversation med AI-chattboten.</p>
     <p>Den ifyllda informationen / prompten skickas med automatiskt, tillsammans med andra instruktioner som hjälper dig att skapa en reseplan.</p>
-    <q-btn icon="smart_toy" label="Starta chatt" @click="startChat" unelevated color="primary" />
+    <div class="row gap-sm">
+      <q-btn icon="smart_toy" label="Starta chatt" @click="startChat" unelevated color="primary" />
+      <q-btn icon="smart_toy" label="Starta Blixten-chatt" @click="startCustomChat('https://chatgpt.com/share/68414aaa-ba24-8012-a954-013d48549684')" unelevated color="primary" />
+    </div>
 
     <q-separator class="q-mt-lg q-mb-lg"/>
 
@@ -132,6 +123,7 @@
 </template>
 
 <script setup lang="ts">
+import FormField from 'src/components/FormField.vue';
 import { useItineraryStore } from 'src/stores/itineraryStore';
 // import { Itinerary } from 'src/ts/models/models';
 import { computed, ref } from 'vue';
@@ -155,8 +147,6 @@ const promptParts = ref({
   extra: '',
 })
 
-const whoOptions = ['Familj', 'Vuxet par']
-const whereOptions = ['Østfold', 'Dalsland', 'Bohuslän']
 // const whereSelected = ref([] as string[])
 
 // const prompt = 'En familj på 2 vuxna och 2 tonåringar kommer vara en vecka i dalsland och gränserna mot norge. de gillar äventyr men är rädda för vatten. ge förslag på en rutt med en aktivitet per dag. de tältar om det behövs men sover gärna bekvämt. de gillar fiskpinnar.'
@@ -169,6 +159,12 @@ const prompt = computed({
     if(promptParts.value.what){
       p += "Beskrivning av vad för typ av information önskas: " + promptParts.value.what + "\n\n"
     }
+    if(promptParts.value.likes){
+      p += "Besökaren gillar: " + promptParts.value.likes + "\n\n"
+    }
+    if(promptParts.value.avoid){
+      p += "Besökaren vill undvika: " + promptParts.value.avoid + "\n\n"
+    }
     if(promptParts.value.where){
       p += "Geografiskt område: " + promptParts.value.where + "\n\n"
     }
@@ -180,12 +176,6 @@ const prompt = computed({
     }
     if(promptParts.value.when){
       p += "Tidsperiod: " + promptParts.value.when + "\n\n"
-    }
-    if(promptParts.value.likes){
-      p += "Saker som besökaren gillar: " + promptParts.value.likes + "\n\n"
-    }
-    if(promptParts.value.avoid){
-      p += "Saker som besökaren vill undvika: " + promptParts.value.avoid + "\n\n"
     }
     if(promptParts.value.extra){
       p += "Extra information: " + promptParts.value.extra + "\n\n"
@@ -224,8 +214,15 @@ function setCurrentStartLocation(){
 }
 
 function startChat () {
+  // Blixten: https://chatgpt.com/share/68414aaa-ba24-8012-a954-013d48549684
   window.open(encodeURI('https://chat.openai.com/?model=gpt-4&q=' + prompt.value))
 }
+
+function startCustomChat (url: string) {
+  // Blixten: https://chatgpt.com/share/68414aaa-ba24-8012-a954-013d48549684
+  window.open(encodeURI(url + '?model=gpt-4&q=' + prompt.value))
+}
+
 
 // const itineraryString = computed({
 //   get(){
