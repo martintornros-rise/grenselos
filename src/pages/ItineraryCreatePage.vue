@@ -91,7 +91,7 @@
     <p>Den ifyllda informationen / prompten skickas med automatiskt, tillsammans med andra instruktioner som hjälper dig att skapa en reseplan.</p>
     <div class="row gap-sm">
       <q-btn icon="smart_toy" label="Starta chatt" @click="startChat" unelevated color="primary" />
-      <q-btn icon="smart_toy" label="Starta Blixten-chatt" @click="startCustomChat('https://chatgpt.com/share/68414aaa-ba24-8012-a954-013d48549684')" unelevated color="primary" />
+      <q-btn icon="smart_toy" label="Starta Blixten-chatt" @click="startCustomChat('https://chatgpt.com/g/g-68403e5fd2948191900e0d910c368594-granslos')" unelevated color="primary" />
     </div>
 
     <q-separator class="q-mt-lg q-mb-lg"/>
