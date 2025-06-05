@@ -210,17 +210,17 @@ function reset () {
 function setCurrentStartLocation(){
   navigator.geolocation.getCurrentPosition((position) => {
     promptParts.value.whereStart = position.coords.latitude + ', ' + position.coords.longitude
-});
+  });
 }
 
 function startChat () {
   // Blixten: https://chatgpt.com/share/68414aaa-ba24-8012-a954-013d48549684
-  window.open(encodeURI('https://chat.openai.com/?model=gpt-4&q=' + prompt.value))
+  window.open(encodeURI('https://chat.openai.com/?q=' + prompt.value))
 }
 
 function startCustomChat (url: string) {
   // Blixten: https://chatgpt.com/share/68414aaa-ba24-8012-a954-013d48549684
-  window.open(encodeURI(url + '?model=gpt-4&q=' + prompt.value))
+  window.open(encodeURI(url + '/?q=' + prompt.value))
 }
 
 
