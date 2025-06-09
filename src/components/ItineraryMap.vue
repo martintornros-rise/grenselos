@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="row gap-xl">
+    <div class="gap-xl" :class="$q.screen.gt.sm ? 'row' : 'column' ">
       <div class="col">
         <div id="map"></div>
       </div>
@@ -9,7 +9,6 @@
         <template v-for="(day, i) in itinerary.days" :key="i">
           <q-item clickable @click="markerSelect(i)" @mouseover="markerMouseOver(i)" @mouseleave="markerMouseLeave(i)" dense bg-color="grey" :active="i === selectedMarkerIndex">
             <q-item-section avatar dense>
-              <!-- <q-icon name="location_on" /> -->
               {{ i+1 }}.
             </q-item-section>
 

@@ -2,7 +2,7 @@
   <q-layout view="hHh Lpr lFf" class="relative-position">
     <q-header id="header">
       <q-toolbar id="headerMenu">
-        <q-btn flat dense round icon="map" aria-label="Menu" class="no-decoration" @click="toggleLeftDrawer" />
+        <q-btn flat dense round icon="menu" aria-label="Menu" class="no-decoration" @click="toggleLeftDrawer" />
 
         <q-toolbar-title>
           {{ $t('project_title') }}
@@ -13,7 +13,7 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered :mini="leftDrawerMini" class="column justify-between">
+    <q-drawer v-model="leftDrawerOpen" bordered class="column justify-between">
       <q-list>
 
         <EssentialLink :title="$t('home')" icon="home" link="home" class="no-decoration"/>
@@ -23,9 +23,9 @@
       </q-list>
 
         <q-item clickable tag="router-link" @click="toggleLeftDrawer" >
-    <q-item-section avatar>
+    <!-- <q-item-section avatar>
       <q-icon name="menu" />
-    </q-item-section>
+    </q-item-section> -->
   </q-item>
 
 
@@ -43,10 +43,10 @@ import EssentialLink from 'components/EssentialLink.vue';
 import LanguagePicker from 'src/components/LanguagePicker.vue';
 
 const leftDrawerOpen = ref(true);
-const leftDrawerMini = ref(false);
+// const leftDrawerMini = ref(false);
 
 function toggleLeftDrawer () {
-  leftDrawerMini.value = !leftDrawerMini.value;
+  leftDrawerOpen.value = !leftDrawerOpen.value;
 }
 </script>
 

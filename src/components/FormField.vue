@@ -1,5 +1,5 @@
 <template>
-  <div class="col column gap-xs">
+  <div class="col-12 col-md column gap-xs">
     <q-input class="col" v-model="model" type="text" :label="label" outlined>
       <template v-slot:append>
         <slot name="append"></slot>

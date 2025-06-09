@@ -24,25 +24,17 @@
 
     <div class="column gap-sm">
 
-      <div class="row gap-sm items-center">
-        <q-icon name="family_restroom" size="md"/>
-        <div class="col row gap-sm">
-          <FormField v-model="promptParts.who" label="Vem/vilka önskar information?" :options="['Familj', 'Vuxet par']"/>
-        </div>
-      </div>
+      <FormFieldGroup icon="family_restroom">
+        <FormField v-model="promptParts.who" label="Vem/vilka önskar information?" :options="['Familj', 'Vuxet par']"/>
+      </FormFieldGroup>
 
-      <div class="row gap-sm items-center">
-        <q-icon name="info" size="md" />
-        <div class="col row gap-sm">
-          <FormField v-model="promptParts.what" label="Vilken information önskas?"/>
-          <FormField v-model="promptParts.likes" label="Något särskilt som besökaren gillar?"/>
-          <FormField v-model="promptParts.avoid" label="Något som besökaren vill undvika?"/>
-        </div>
-      </div>
+      <FormFieldGroup icon="info">
+        <FormField v-model="promptParts.what" label="Vilken information önskas?"/>
+        <FormField v-model="promptParts.likes" label="Något särskilt som besökaren gillar?"/>
+        <FormField v-model="promptParts.avoid" label="Något som besökaren vill undvika?"/>
+      </FormFieldGroup>
 
-      <div class="row gap-sm items-center">
-        <q-icon name="location_on" size="md" />
-        <div class="col row gap-sm">
+      <FormFieldGroup icon="location_on">
           <FormField v-model="promptParts.where" label="Vilket geografiskt område?" :options="['Østfold', 'Dalsland', 'Bohuslän']"/>
           <FormField v-model="promptParts.whereStart" label="Var ska resan starta?">
             <template v-slot:append>
@@ -50,21 +42,15 @@
             </template>
           </FormField>
           <FormField v-model="promptParts.whereEnd" label="Var ska resan sluta?"/>
-        </div>
-      </div>
+      </FormFieldGroup>
 
-      <div class="row gap-sm items-center">
-        <q-icon name="calendar_month" size="md"/>
-        <div class="col row gap-sm">
+      <FormFieldGroup icon="calendar_month">
           <FormField v-model="promptParts.when" label="Vilken tidsperiod?"/>
-        </div>
-      </div>
-      <div class="row gap-sm items-center">
-        <q-icon name="star" size="md"/>
-        <div class="col row gap-sm">
+      </FormFieldGroup>
+
+      <FormFieldGroup icon="star">
           <FormField v-model="promptParts.extra" label="Extra information?"/>
-        </div>
-      </div>
+      </FormFieldGroup>
       <!-- <q-input v-model="prompt" type="textarea" label="Förslag på prompt" /> -->
       <q-expansion-item
         expand-separator
@@ -124,6 +110,7 @@
 
 <script setup lang="ts">
 import FormField from 'src/components/FormField.vue';
+import FormFieldGroup from 'src/components/FormFieldGroup.vue';
 import { useItineraryStore } from 'src/stores/itineraryStore';
 // import { Itinerary } from 'src/ts/models/models';
 import { computed, ref } from 'vue';
