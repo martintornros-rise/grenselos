@@ -6,6 +6,6 @@
 import { onMounted } from 'vue';
 
 onMounted(() => {
-  console.log("ENV VARIABLES", process.env)
+  console.log("ENV VARIABLES")
 })
 </script>
