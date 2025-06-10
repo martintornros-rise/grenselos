@@ -16,9 +16,9 @@
     <q-drawer v-model="leftDrawerOpen" bordered class="column justify-between">
       <q-list>
 
-        <EssentialLink :title="$t('home')" icon="home" link="home" class="no-decoration"/>
-        <EssentialLink :title="$t('itinerary.create')" icon="chat" link="create" class="no-decoration" />
-        <EssentialLink :title="$t('itinerary.view')" icon="map" link="itinerary" class="no-decoration" />
+        <EssentialLink :title="$t('home')" icon="home" route="Home" class="no-decoration"/>
+        <EssentialLink :title="$t('itinerary.create')" icon="chat" route="Create" class="no-decoration" />
+        <EssentialLink :title="$t('itinerary.view')" icon="map" route="View" class="no-decoration" />
 
       </q-list>
 

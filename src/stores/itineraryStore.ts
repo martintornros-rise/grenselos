@@ -1,10 +1,22 @@
 import { defineStore, acceptHMRUpdate } from 'pinia';
 import type { Itinerary } from 'src/ts/models/models';
-import {itineraryTestData} from 'app/src/ts/models/itinerary'
+// import {itineraryTestData} from 'app/src/ts/models/itinerary'
 
 export const useItineraryStore = defineStore('itinerary', {
   state: () => ({
-    itinerary: itineraryTestData as Itinerary | undefined,
+    // itinerary: itineraryTestData as Itinerary | undefined,
+    itinerary: undefined as Itinerary | undefined,
+    promptParts: {
+      who: '',
+      what: '',
+      where: '',
+      whereStart: '',
+      whereEnd: '',
+      when: '',
+      likes: '',
+      avoid: '',
+      extra: '',
+    }
   }),
 
   getters: {

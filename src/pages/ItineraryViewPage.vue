@@ -9,7 +9,7 @@
 
     <div v-else>
       <p>Ingen reseplan är skapad.</p>
-      <q-btn label="Skapa ny reseplan" to="/ai" unelevated color="primary"/>
+      <q-btn label="Skapa ny reseplan" :to="{name: 'Create'}" unelevated color="primary"/>
     </div>
 
   </q-page>

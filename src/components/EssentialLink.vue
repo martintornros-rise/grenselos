@@ -1,5 +1,5 @@
 <template>
-  <q-item clickable tag="router-link" :to="link">
+  <q-item clickable tag="router-link" :to="{name: route}">
     <q-item-section v-if="icon" avatar>
       <q-icon :name="icon" />
     </q-item-section>
@@ -15,13 +15,13 @@
 export interface EssentialLinkProps {
   title: string;
   caption?: string;
-  link?: string;
+  route?: string;
   icon?: string;
 };
 
 withDefaults(defineProps<EssentialLinkProps>(), {
   caption: '',
-  link: '#',
+  route: '',
   icon: '',
 });
 </script>

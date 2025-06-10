@@ -25,38 +25,38 @@
     <div class="column gap-sm">
 
       <FormFieldGroup icon="family_restroom">
-        <FormField v-model="promptParts.who" label="Vem/vilka önskar information?" :options="['Familj', 'Vuxet par']"/>
+        <FormField v-model="itineraryStore.promptParts.who" label="Vem/vilka önskar information?" :options="['Familj', 'Vuxet par']"/>
       </FormFieldGroup>
 
       <FormFieldGroup icon="info">
-        <FormField v-model="promptParts.what" label="Vilken information önskas?"/>
-        <FormField v-model="promptParts.likes" label="Något särskilt som besökaren gillar?"/>
-        <FormField v-model="promptParts.avoid" label="Något som besökaren vill undvika?"/>
+        <FormField v-model="itineraryStore.promptParts.what" label="Vilken information önskas?"/>
+        <FormField v-model="itineraryStore.promptParts.likes" label="Något särskilt som besökaren gillar?"/>
+        <FormField v-model="itineraryStore.promptParts.avoid" label="Något som besökaren vill undvika?"/>
       </FormFieldGroup>
 
       <FormFieldGroup icon="location_on">
-          <FormField v-model="promptParts.where" label="Vilket geografiskt område?" :options="['Østfold', 'Dalsland', 'Bohuslän']"/>
-          <FormField v-model="promptParts.whereStart" label="Var ska resan starta?">
+          <FormField v-model="itineraryStore.promptParts.where" label="Vilket geografiskt område?" :options="['Østfold', 'Dalsland', 'Bohuslän']"/>
+          <FormField v-model="itineraryStore.promptParts.whereStart" label="Var ska resan starta?">
             <template v-slot:append>
               <q-btn icon="location_on" @click="setCurrentStartLocation" dense flat/>
             </template>
           </FormField>
-          <FormField v-model="promptParts.whereEnd" label="Var ska resan sluta?"/>
+          <FormField v-model="itineraryStore.promptParts.whereEnd" label="Var ska resan sluta?"/>
       </FormFieldGroup>
 
       <FormFieldGroup icon="calendar_month">
-          <FormField v-model="promptParts.when" label="Vilken tidsperiod?"/>
+          <FormField v-model="itineraryStore.promptParts.when" label="Vilken tidsperiod?"/>
       </FormFieldGroup>
 
       <FormFieldGroup icon="star">
-          <FormField v-model="promptParts.extra" label="Extra information?"/>
+          <FormField v-model="itineraryStore.promptParts.extra" label="Extra information?"/>
       </FormFieldGroup>
       <!-- <q-input v-model="prompt" type="textarea" label="Förslag på prompt" /> -->
       <q-expansion-item
         expand-separator
         icon="terminal"
-        label="Prompt till AI"
-        caption="Visa den text som inleder AI-chatten."
+        label="AI-prompt"
+        caption="Visa den information som skickas till AI:n"
       >
         <q-card class="prompt bg-grey-3 relative-position" flat bordered>
           <q-card-section>
@@ -72,38 +72,53 @@
 
     <q-separator class="q-mt-lg q-mb-lg"/>
 
-    <h2>2. Starta chatten</h2>
-    <p>Starta konversation med AI-chattboten.</p>
-    <p>Den ifyllda informationen / prompten skickas med automatiskt, tillsammans med andra instruktioner som hjälper dig att skapa en reseplan.</p>
-    <div class="row gap-sm">
-      <q-btn icon="smart_toy" label="Starta chatt" @click="startChat" unelevated color="primary" />
-      <q-btn icon="smart_toy" label="Starta Blixten-chatt" @click="startCustomChat('https://chatgpt.com/g/g-68403e5fd2948191900e0d910c368594-granslos')" unelevated color="primary" />
+    <h2>2. Använd AI</h2>
+    <div class="row">
+      <div class="col">
+        <p>Skicka informationen till en AI och invänta en färdig reseplan.</p>
+        <div class="row gap-sm">
+          <q-btn icon="smart_toy" label="Skapa reseplan med AI" @click="callcloudOpenAI" unelevated color="primary" :loading="isGeneratingResponse" />
+          <span v-if="openAISuccess === true" class="text-positive">Reseplanen är skapad</span>
+          <span v-else-if="openAISuccess === false" class="text-negative">Det gick inte att skapa reseplanen, försök igen.</span>
+        </div>
+      </div>
+      <div class="row items-center q-ma-lg text-grey">
+        ELLER
+      </div>
+      <div class="col">
+
+        <ol class="column gap-sm">
+          <li>
+        <!-- <div class="row items-start"> -->
+          <div class="col">Starta en chatt och arbeta successivt fram en reseplan.</div>
+          <div class="row gap-sm">
+            <q-btn icon="smart_toy" label="Starta chatt" @click="startChat" unelevated color="primary" />
+            <!-- <q-btn icon="smart_toy" label="Starta Blixten-chatt" @click="startCustomChat('https://chatgpt.com/g/g-68403e5fd2948191900e0d910c368594-granslos')" unelevated color="primary" /> -->
+          </div>
+        <!-- </div> -->
+        </li>
+        <li>
+
+          <div class="col">
+            När ni är nöjda med reseplanen: Be chattbotten exportera som JSON, kopiera resultatet och klistra in nedan.
+          </div>
+          <div class="row gap-sm items-center">
+            <q-btn icon="content_paste" :label="$t('paste')" @click="pasteItinerary" unelevated color="primary" />
+            <span v-if="itineraryValidated === true" class="text-positive">Reseplanen är skapad</span>
+            <span v-else-if="itineraryValidated === false" class="text-negative">Det gick inte att skapa reseplanen, försök igen.</span>
+          </div>
+
+        </li>
+        </ol>
+      </div>
+
+
     </div>
 
     <q-separator class="q-mt-lg q-mb-lg"/>
 
-    <h2>3. Exportera en reseplan</h2>
-    <p>
-      När ni är nöjda med förslagen kan AI:n hjälpa att skapa en reseplan.
-    </p>
-    <p>
-      Be chattbotten exportera en reseplan (JSON) och kopiera resultatet.
-    </p>
-
-    <q-separator class="q-mt-lg q-mb-lg"/>
-
-    <h2>4. Klistra in resultatet</h2>
-    <!-- <q-input v-model="itineraryString" type="textarea" label="Reseplan som JSON" outlined /> -->
-     <div class="row gap-sm items-center">
-      <q-btn icon="content_paste" :label="$t('paste')" @click="pasteItinerary" unelevated color="primary" />
-      <span v-if="parseResult === true" class="text-positive">Reseplanen är skapad</span>
-      <span v-else-if="parseResult === false" class="text-negative">Det gick inte att skapa reseplanen, försök igen.</span>
-    </div>
-
-    <!-- {{ text }} -->
-
-    <h2>5. Visa reseplan</h2>
-    <q-btn icon="map" :label="$t('itinerary.view')" to="/itinerary" unelevated color="primary" class="no-decoration"/>
+    <h2>3. Visa reseplan</h2>
+    <q-btn icon="map" :label="$t('itinerary.view')" to="/itinerary" :disable="!itineraryStore.itinerary" unelevated color="primary" class="no-decoration"/>
 
   </q-page>
 </template>
@@ -112,8 +127,9 @@
 import FormField from 'src/components/FormField.vue';
 import FormFieldGroup from 'src/components/FormFieldGroup.vue';
 import { useItineraryStore } from 'src/stores/itineraryStore';
+import { useParse } from 'src/ts/useParse';
 // import { Itinerary } from 'src/ts/models/models';
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 // import { useClipboard } from '@vueuse/core'
 // import { Itinerary } from 'src/ts/models/models';
 
@@ -121,18 +137,7 @@ import { computed, ref } from 'vue';
 // const { text } = useClipboard({ source })
 
 const itineraryStore = useItineraryStore()
-
-const promptParts = ref({
-  who: '',
-  what: '',
-  where: '',
-  whereStart: '',
-  whereEnd: '',
-  when: '',
-  likes: '',
-  avoid: '',
-  extra: '',
-})
+const p = useParse()
 
 // const whereSelected = ref([] as string[])
 
@@ -140,47 +145,46 @@ const promptParts = ref({
 const prompt = computed({
   get () {
     let p = 'Du är ett stöd till en turistbyrå eller guide som har fått en fråga från turister eller besökare.\n\n'
-    if(promptParts.value.who){
-      p += "Beskrivning av vem/vilka som önskar information: " + promptParts.value.who + "\n\n"
+    if(itineraryStore.promptParts.who){
+      p += "Beskrivning av vem/vilka som önskar information: " + itineraryStore.promptParts.who + "\n\n"
     }
-    if(promptParts.value.what){
-      p += "Beskrivning av vad för typ av information önskas: " + promptParts.value.what + "\n\n"
+    if(itineraryStore.promptParts.what){
+      p += "Beskrivning av vad för typ av information önskas: " + itineraryStore.promptParts.what + "\n\n"
     }
-    if(promptParts.value.likes){
-      p += "Besökaren gillar: " + promptParts.value.likes + "\n\n"
+    if(itineraryStore.promptParts.likes){
+      p += "Besökaren gillar: " + itineraryStore.promptParts.likes + "\n\n"
     }
-    if(promptParts.value.avoid){
-      p += "Besökaren vill undvika: " + promptParts.value.avoid + "\n\n"
+    if(itineraryStore.promptParts.avoid){
+      p += "Besökaren vill undvika: " + itineraryStore.promptParts.avoid + "\n\n"
     }
-    if(promptParts.value.where){
-      p += "Geografiskt område: " + promptParts.value.where + "\n\n"
+    if(itineraryStore.promptParts.where){
+      p += "Geografiskt område: " + itineraryStore.promptParts.where + "\n\n"
     }
-    if(promptParts.value.whereStart){
-      p += "Resans start: " + promptParts.value.whereStart + "\n\n"
+    if(itineraryStore.promptParts.whereStart){
+      p += "Resans start: " + itineraryStore.promptParts.whereStart + "\n\n"
     }
-    if(promptParts.value.whereEnd){
-      p += "Resans slut:  " + promptParts.value.whereEnd + "\n\n"
+    if(itineraryStore.promptParts.whereEnd){
+      p += "Resans slut:  " + itineraryStore.promptParts.whereEnd + "\n\n"
     }
-    if(promptParts.value.when){
-      p += "Tidsperiod: " + promptParts.value.when + "\n\n"
+    if(itineraryStore.promptParts.when){
+      p += "Tidsperiod: " + itineraryStore.promptParts.when + "\n\n"
     }
-    if(promptParts.value.extra){
-      p += "Extra information: " + promptParts.value.extra + "\n\n"
+    if(itineraryStore.promptParts.extra){
+      p += "Extra information: " + itineraryStore.promptParts.extra + "\n\n"
     }
-    p += promptExport
     return p
   },
   set() {}
 })
 
-const promptExport = 'När reseplanen är klar, fråga om användaren vill exportera reseplanen. Om hen svarar ja, exportera reseplanen som JSON enligt:\n\nLocation = {"name": string, "coordinates": [number,number], "country_code": string, "description": string, "url": string}\n\nDayPlan = {"title": string, "location": Location, "description": string}\n\nItinerary = {"title": string,"days": DayPlan[]}"'
+const promptJSON = 'Location = {"name": string, "coordinates": [number,number], "country_code": string, "description": string, "url": string}\n\nDayPlan = {"title": string, "location": Location, "description": string}\n\nItinerary = {"title": string,"days": DayPlan[]}"'
 
 // function copyPrompt () {
 
 // }
 
 function reset () {
-  promptParts.value = {
+  itineraryStore.promptParts = {
   who: '',
   what: '',
   where: '',
@@ -196,19 +200,24 @@ function reset () {
 
 function setCurrentStartLocation(){
   navigator.geolocation.getCurrentPosition((position) => {
-    promptParts.value.whereStart = position.coords.latitude + ', ' + position.coords.longitude
+    itineraryStore.promptParts.whereStart = position.coords.latitude + ', ' + position.coords.longitude
   });
 }
 
 function startChat () {
   // Blixten: https://chatgpt.com/share/68414aaa-ba24-8012-a954-013d48549684
-  window.open(encodeURI('https://chat.openai.com/?q=' + prompt.value))
+
+  const exportInstructions = 'När reseplanen är klar, fråga om användaren vill exportera reseplanen. Om hen svarar ja, exportera reseplanen som JSON enligt:'
+
+  const promptFinal = prompt.value + exportInstructions + '\n\n' + promptJSON
+
+  window.open(encodeURI('https://chat.openai.com/?q=' + promptFinal))
 }
 
-function startCustomChat (url: string) {
-  // Blixten: https://chatgpt.com/share/68414aaa-ba24-8012-a954-013d48549684
-  window.open(encodeURI(url + '/?q=' + prompt.value))
-}
+// function startCustomChat (url: string) {
+//   // Blixten: https://chatgpt.com/share/68414aaa-ba24-8012-a954-013d48549684
+//   window.open(encodeURI(url + '/?q=' + prompt.value))
+// }
 
 
 // const itineraryString = computed({
@@ -220,15 +229,41 @@ function startCustomChat (url: string) {
 //   }
 
 // })
-const parseResult = ref(undefined as true | false | undefined)
+const itineraryValidated = ref(undefined as true | false | undefined)
 async function pasteItinerary() {
   const text = await navigator.clipboard.readText();
   try {
     itineraryStore.itinerary = JSON.parse(text)
-    parseResult.value = true
+    itineraryValidated.value = true
   }
   catch {
-    parseResult.value = false
+    itineraryValidated.value = false
+  }
+}
+
+// PARSE & OPENAI
+onMounted(() => {
+  p.parseInitialize()
+})
+const isGeneratingResponse = ref(false)
+const response = ref()
+const openAISuccess = ref(undefined as true | false | undefined)
+async function callcloudOpenAI(){
+  isGeneratingResponse.value = true
+
+  const exportInstructions = 'Returnera reseplanen som JSON enligt:'
+
+  const promptFinal = prompt.value + exportInstructions + '\n\n' + promptJSON
+
+  response.value = await p.callCloudOpenAI(promptFinal)
+  try{
+    itineraryStore.itinerary = JSON.parse(response.value.choices[0].message.content)
+    openAISuccess.value = true
+    isGeneratingResponse.value = false
+  }
+  catch{
+    openAISuccess.value = false
+    isGeneratingResponse.value = false
   }
 }
 

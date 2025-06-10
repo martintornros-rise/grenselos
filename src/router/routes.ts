@@ -2,13 +2,20 @@ import type { RouteRecordRaw } from 'vue-router';
 
 const routes: RouteRecordRaw[] = [
   {
-    path: '',
+    path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') },
-      { path: 'home', component: () => import('pages/IndexPage.vue') },
-      { path: 'create', component: () => import('pages/ItineraryCreatePage.vue') },
-      { path: 'itinerary', component: () => import('pages/ItineraryViewPage.vue') },
+      { name: "Root", path: '', component: () => import('pages/IndexPage.vue') },
+      { name: "Home", path: 'home', component: () => import('pages/IndexPage.vue') },
+      { name: "Create", path: 'create', component: () => import('pages/ItineraryCreatePage.vue') },
+      { name: "View", path: 'itinerary', component: () => import('pages/ItineraryViewPage.vue') },
+    ],
+  },
+  {
+    path: '/test',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { name: "ParseTest", path: 'parse', component: () => import('pages/ParseTestPage.vue') }
     ],
   },
 
