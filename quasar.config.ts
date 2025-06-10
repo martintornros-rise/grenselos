@@ -3,8 +3,18 @@
 
 import { defineConfig } from '#q-app/wrappers';
 import { fileURLToPath } from 'node:url';
+// import dotenv from 'dotenv'
 
 export default defineConfig((ctx) => {
+
+// let envVars
+//   if (ctx.dev) {
+//     envVars = dotenv.config({ path: '../.env.dev' }).parsed
+//   } else {
+//     envVars = dotenv.config({ path: '../.env.prod' }).parsed
+//   }
+//   console.log('envVars in quasar config:', envVars)
+
   return {
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
     // preFetch: true,
