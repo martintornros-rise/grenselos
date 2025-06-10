@@ -77,7 +77,7 @@
       <div class="col">
         <p>Skicka informationen till en AI och invänta en färdig reseplan.</p>
         <div class="row gap-sm">
-          <q-btn icon="smart_toy" label="Skapa reseplan med AI" @click="callcloudOpenAI" unelevated color="primary" :loading="isGeneratingResponse" />
+          <q-btn icon="smart_toy" label="Skapa reseplan med AI" @click="callCloudOpenAI" unelevated color="primary" :loading="isGeneratingResponse" />
           <span v-if="openAISuccess === true" class="text-positive">Reseplanen är skapad</span>
           <span v-else-if="openAISuccess === false" class="text-negative">Det gick inte att skapa reseplanen, försök igen.</span>
         </div>
@@ -248,7 +248,7 @@ onMounted(() => {
 const isGeneratingResponse = ref(false)
 const response = ref()
 const openAISuccess = ref(undefined as true | false | undefined)
-async function callcloudOpenAI(){
+async function callCloudOpenAI(){
   isGeneratingResponse.value = true
 
   const exportInstructions = 'Returnera reseplanen som JSON enligt:'

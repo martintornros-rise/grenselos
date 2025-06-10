@@ -75,7 +75,8 @@
     <h2>2. Använd AI</h2>
     <p>Skicka informationen till en AI och invänta reseplan</p>
     <div class="row gap-sm">
-      <q-btn icon="smart_toy" label="Skapa reseplan med AI" @click="callcloudOpenAI" unelevated color="primary" :loading="isGeneratingResponse" />
+      <q-btn icon="smart_toy" label="Skapa reseplan med AI" @click="callCloudOpenAI" unelevated color="primary" :loading="isGeneratingResponse" />
+      <q-btn icon="smart_toy" label="Hello" @click="callCloudHello" unelevated color="primary" :loading="isGeneratingResponse" />
       <span v-if="openAISuccess === true" class="text-positive">Reseplanen är skapad</span>
       <span v-else-if="openAISuccess === false" class="text-negative">Det gick inte att skapa reseplanen, försök igen.</span>
     </div>
@@ -204,10 +205,14 @@ onMounted(() => {
   p.parseInitialize()
 })
 
+async function callCloudHello(){
+  await p.callCloudHello('Martin')
+}
+
 const isGeneratingResponse = ref(false)
 const response = ref()
 const openAISuccess = ref(undefined as true | false | undefined)
-async function callcloudOpenAI(){
+async function callCloudOpenAI(){
   isGeneratingResponse.value = true
   response.value = await p.callCloudOpenAI(prompt.value)
   try{
