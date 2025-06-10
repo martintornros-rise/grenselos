@@ -19,6 +19,7 @@
         <EssentialLink :title="$t('home')" icon="home" route="Home" class="no-decoration"/>
         <EssentialLink :title="$t('itinerary.create')" icon="chat" route="Create" class="no-decoration" />
         <EssentialLink :title="$t('itinerary.view')" icon="map" route="View" class="no-decoration" />
+        <EssentialLink title="Testyta" icon="science" route="Tests" class="no-decoration" />
 
       </q-list>
 
