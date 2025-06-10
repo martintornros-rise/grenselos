@@ -179,10 +179,6 @@ const prompt = computed({
 
 const promptJSON = 'Location = {"name": string, "coordinates": [number,number], "country_code": string, "description": string, "url": string}\n\nDayPlan = {"title": string, "location": Location, "description": string}\n\nItinerary = {"title": string,"days": DayPlan[]}"'
 
-// function copyPrompt () {
-
-// }
-
 function reset () {
   itineraryStore.promptParts = {
   who: '',
