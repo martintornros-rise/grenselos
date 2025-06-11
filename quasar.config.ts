@@ -3,18 +3,14 @@
 
 import { defineConfig } from '#q-app/wrappers';
 import { fileURLToPath } from 'node:url';
-// import dotenv from 'dotenv'
-
-console.log("Terminal environment variables", process.env)
 
 export default defineConfig((ctx) => {
 
-  let env = ctx.dev ? {} : {
+  const env = ctx.dev ? {} : {
     PARSE_APP_ID: process.env.PARSE_APP_ID,
     PARSE_JS_ID: process.env.PARSE_JS_ID,
     PARSE_SERVER_URL: process.env.PARSE_SERVER_URL
   }
-
 
   return {
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature

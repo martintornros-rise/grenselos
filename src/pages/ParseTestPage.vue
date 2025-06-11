@@ -20,14 +20,6 @@
 
     <q-separator class="q-mt-lg q-mb-lg"/> -->
 
-    <h2>ENV-variabler</h2>
-    <ul>
-      <li>CI: {{ env.CI }}</li>
-      <li>PARSE_APP_ID: {{ env.PARSE_APP_ID }}</li>
-      <li>FOO (quasar.config.ts): {{ env.FOO }}</li>
-      <li>BAR (parameter): {{ env.BAR }}</li>
-    </ul>
-
     <h2>1. Fyll i information</h2>
 
     <div class="column gap-sm">
