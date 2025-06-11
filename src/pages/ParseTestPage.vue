@@ -20,6 +20,12 @@
 
     <q-separator class="q-mt-lg q-mb-lg"/> -->
 
+    <h2>ENV-variabler</h2>
+    <ul>
+      <li>CI: {{ env.CI }}</li>
+      <li>CI: {{ env.PARSE_APP_ID }}</li>
+    </ul>
+
     <h2>1. Fyll i information</h2>
 
     <div class="column gap-sm">
@@ -120,6 +126,8 @@ import { computed, onMounted, ref } from 'vue';
 
 const itineraryStore = useItineraryStore()
 const p = useParse();
+
+const env = computed(() => process.env)
 
 const promptParts = ref({
   who: '',
