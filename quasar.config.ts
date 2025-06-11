@@ -70,7 +70,9 @@ export default defineConfig((ctx) => {
 
       // publicPath: '/',
       // analyze: true,
-      env: {},
+      env: {
+        FOO: 'hello'
+      },
       // rawDefine: {}
       // ignorePublicFolder: true,
       // minify: false,
