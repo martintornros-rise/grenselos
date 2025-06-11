@@ -24,6 +24,7 @@
     <ul>
       <li>CI: {{ env.CI }}</li>
       <li>PARSE_APP_ID: {{ env.PARSE_APP_ID }}</li>
+      <li>FOO: {{ env.FOO }}</li>
     </ul>
 
     <h2>1. Fyll i information</h2>
@@ -128,6 +129,10 @@ const itineraryStore = useItineraryStore()
 const p = useParse();
 
 const env = computed(() => process.env)
+
+onMounted(() =>{
+  console.log(env.value.MODE, env.value.CI, env.value.PARSE_APP_ID, env.value.FOO)
+})
 
 const promptParts = ref({
   who: '',
