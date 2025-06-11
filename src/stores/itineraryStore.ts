@@ -8,6 +8,7 @@ export const useItineraryStore = defineStore('itinerary', {
     itinerary: undefined as Itinerary | undefined,
     promptParts: {
       who: '',
+      accessibility: '',
       what: '',
       where: '',
       whereStart: '',
@@ -25,6 +26,19 @@ export const useItineraryStore = defineStore('itinerary', {
   actions: {
     resetItinerary() {
       this.itinerary = undefined
+      this.promptParts = {
+        who: '',
+        accessibility: '',
+        what: '',
+        where: '',
+        whereStart: '',
+        whereEnd: '',
+        when: '',
+        likes: '',
+        avoid: '',
+        extra: '',
+      }
+
     }
   },
 });

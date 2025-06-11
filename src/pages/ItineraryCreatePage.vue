@@ -6,7 +6,7 @@
       <h1>{{ $t('itinerary.create') }}</h1>
       <div class="text-right">
 
-        <q-btn icon="refresh" :label="$t('itinerary.create.new')" @click="reset" unelevated color="primary" />
+        <q-btn icon="refresh" :label="$t('itinerary.create.new')" @click="itineraryStore.resetItinerary" unelevated color="primary" />
         <!-- <p>{{$t('itinerary.create.clear_warning')}}</p> -->
       </div>
     </div>
@@ -44,6 +44,10 @@
           <FormField v-model="itineraryStore.promptParts.whereEnd" label="Var ska resan sluta?"/>
       </FormFieldGroup>
 
+      <FormFieldGroup icon="accessibility">
+        <FormField v-model="itineraryStore.promptParts.accessibility" label="Tillgänglighetsaspekter" :options="['Bilparkering', 'Kollektivtrafik', 'Barnvagn', 'Rullstol', 'Tolk' ]"/>
+      </FormFieldGroup>
+
       <FormFieldGroup icon="calendar_month">
           <FormField v-model="itineraryStore.promptParts.when" label="Vilken tidsperiod?"/>
       </FormFieldGroup>
@@ -74,23 +78,24 @@
 
     <h2>2. Använd AI</h2>
     <div class="row">
-      <div class="col">
+      <div class="col column gap-sm items-start">
         <p>Skicka informationen till en AI och invänta en färdig reseplan.</p>
-        <div class="row gap-sm">
+        <div class="row gap-sm items-center">
           <q-btn icon="smart_toy" label="Skapa reseplan med AI" @click="callCloudOpenAI" unelevated color="primary" :loading="isGeneratingResponse" />
           <span v-if="openAISuccess === true" class="text-positive">Reseplanen är skapad</span>
           <span v-else-if="openAISuccess === false" class="text-negative">Det gick inte att skapa reseplanen, försök igen.</span>
         </div>
+        <q-btn icon="map" :label="$t('itinerary.view')" to="/itinerary" :disable="!itineraryStore.itinerary" unelevated color="primary" class="no-decoration"/>
       </div>
       <div class="row items-center q-ma-lg text-grey">
         ELLER
       </div>
-      <div class="col">
-
+      <div class="col column gap-sm items-start">
+        <p>Starta en AI-chatt och arbeta successivt fram en reseplan.</p>
         <ol class="column gap-sm">
           <li>
         <!-- <div class="row items-start"> -->
-          <div class="col">Starta en chatt och arbeta successivt fram en reseplan.</div>
+          <div class="col">Starta chatt i nytt fönster.</div>
           <div class="row gap-sm">
             <q-btn icon="smart_toy" label="Starta chatt" @click="startChat" unelevated color="primary" />
             <!-- <q-btn icon="smart_toy" label="Starta Blixten-chatt" @click="startCustomChat('https://chatgpt.com/g/g-68403e5fd2948191900e0d910c368594-granslos')" unelevated color="primary" /> -->
@@ -110,15 +115,16 @@
 
         </li>
         </ol>
+        <q-btn icon="map" :label="$t('itinerary.view')" to="/itinerary" :disable="!itineraryStore.itinerary" unelevated color="primary" class="no-decoration"/>
       </div>
 
 
     </div>
 
-    <q-separator class="q-mt-lg q-mb-lg"/>
+    <!-- <q-separator class="q-mt-lg q-mb-lg"/>
 
     <h2>3. Visa reseplan</h2>
-    <q-btn icon="map" :label="$t('itinerary.view')" to="/itinerary" :disable="!itineraryStore.itinerary" unelevated color="primary" class="no-decoration"/>
+    <q-btn icon="map" :label="$t('itinerary.view')" to="/itinerary" :disable="!itineraryStore.itinerary" unelevated color="primary" class="no-decoration"/> -->
 
   </q-page>
 </template>
@@ -166,6 +172,9 @@ const prompt = computed({
     if(itineraryStore.promptParts.whereEnd){
       p += "Resans slut:  " + itineraryStore.promptParts.whereEnd + "\n\n"
     }
+    if(itineraryStore.promptParts.accessibility){
+      p += "Tillgänglighetsaspekter:  " + itineraryStore.promptParts.accessibility + "\n\n"
+    }
     if(itineraryStore.promptParts.when){
       p += "Tidsperiod: " + itineraryStore.promptParts.when + "\n\n"
     }
@@ -178,21 +187,6 @@ const prompt = computed({
 })
 
 const promptJSON = 'Location = {"name": string, "coordinates": [number,number], "country_code": string, "description": string, "url": string}\n\nDayPlan = {"title": string, "location": Location, "description": string}\n\nItinerary = {"title": string,"days": DayPlan[]}"'
-
-function reset () {
-  itineraryStore.promptParts = {
-  who: '',
-  what: '',
-  where: '',
-  whereStart: '',
-  whereEnd: '',
-  when: '',
-  likes: '',
-  avoid: '',
-  extra: '',
-}
-  itineraryStore.resetItinerary()
-}
 
 function setCurrentStartLocation(){
   navigator.geolocation.getCurrentPosition((position) => {
@@ -215,16 +209,6 @@ function startChat () {
 //   window.open(encodeURI(url + '/?q=' + prompt.value))
 // }
 
-
-// const itineraryString = computed({
-//   get(){
-//     return itineraryStore.itinerary ? JSON.stringify(itineraryStore.itinerary) : ''
-//   },
-//   set (value: string) {
-//     itineraryStore.itinerary = value ? JSON.parse(value) : undefined
-//   }
-
-// })
 const itineraryValidated = ref(undefined as true | false | undefined)
 async function pasteItinerary() {
   const text = await navigator.clipboard.readText();

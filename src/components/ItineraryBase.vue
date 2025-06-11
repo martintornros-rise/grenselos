@@ -2,6 +2,16 @@
   <div class="">
     <h1>{{ itinerary.title }}</h1>
 
+    <q-card bordered flat class="row items-center text-body2 q-mb-md bg-red-1">
+      <q-card-section>
+      <q-icon name="smart_toy" size="sm"/>
+      </q-card-section>
+      <q-card-section class="col q-pa-xs ">
+        Denna reseplan är skapad automatiskt med hjälp av AI baserat på tillhandahållen information. I förekommande fall kan svaren vara vilseledande eller felaktiga. Det rekommenderas att du själv undersöker sådant som är av särskild vikt, för att säkerställa att informationen stämmer.
+      </q-card-section>
+
+    </q-card>
+
     <ItineraryMap :itinerary="itinerary"/>
 
     <q-separator class="q-mt-lg q-mb-lg"/>
