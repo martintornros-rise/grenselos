@@ -24,7 +24,8 @@
     <ul>
       <li>CI: {{ env.CI }}</li>
       <li>PARSE_APP_ID: {{ env.PARSE_APP_ID }}</li>
-      <li>FOO: {{ env.FOO }}</li>
+      <li>FOO (quasar.config.ts): {{ env.FOO }}</li>
+      <li>BAR (parameter): {{ env.BAR }}</li>
     </ul>
 
     <h2>1. Fyll i information</h2>
