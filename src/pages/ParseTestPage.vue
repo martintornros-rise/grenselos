@@ -23,7 +23,7 @@
     <h2>ENV-variabler</h2>
     <ul>
       <li>CI: {{ env.CI }}</li>
-      <li>CI: {{ env.PARSE_APP_ID }}</li>
+      <li>PARSE_APP_ID: {{ env.PARSE_APP_ID }}</li>
     </ul>
 
     <h2>1. Fyll i information</h2>
