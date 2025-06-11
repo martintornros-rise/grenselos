@@ -9,13 +9,12 @@ console.log("Terminal environment variables", process.env)
 
 export default defineConfig((ctx) => {
 
-// let envVars
-//   if (ctx.dev) {
-//     envVars = dotenv.config({ path: '../.env.dev' }).parsed
-//   } else {
-//     envVars = dotenv.config({ path: '../.env.prod' }).parsed
-//   }
-//   console.log('envVars in quasar config:', envVars)
+  let env = ctx.dev ? {} : {
+    PARSE_APP_ID: process.env.PARSE_APP_ID,
+    PARSE_JS_ID: process.env.PARSE_JS_ID,
+    PARSE_SERVER_URL: process.env.PARSE_SERVER_URL
+  }
+
 
   return {
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
@@ -72,9 +71,7 @@ export default defineConfig((ctx) => {
 
       // publicPath: '/',
       // analyze: true,
-      env: {
-        FOO: 'hello'
-      },
+      env: env,
       // rawDefine: {}
       // ignorePublicFolder: true,
       // minify: false,
