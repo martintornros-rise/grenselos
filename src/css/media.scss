@@ -1,0 +1,26 @@
+@media print {
+
+    .no-print,
+    .no-print * {
+        display: none !important;
+    }
+
+    body {
+        visibility: hidden;
+    }
+
+    #section-to-print {
+        visibility: visible;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+}
+
+@media screen {
+    .print {
+        display: none !important;
+    }
+
+}

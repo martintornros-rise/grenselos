@@ -13,22 +13,13 @@ export function useParse() {
     return r
   }
 
-  async function callGetUrl(url: string){
-    const r = await Parse.Cloud.run("getUrl", {url: url});
-    console.log(r)
-    return r
-  }
-
   async function callCloudOpenAI(prompt: string){
-    const r = await Parse.Cloud.run("callOpenAI", {prompt: prompt});
-    console.log(r)
-    return r
+    return await Parse.Cloud.run("callOpenAI", {prompt: prompt});
   }
 
   return {
     parseInitialize,
     callCloudHello,
-    callGetUrl,
     callCloudOpenAI
   }
 

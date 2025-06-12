@@ -1,6 +1,10 @@
 <template>
   <div class="">
-    <h1>{{ itinerary.title }}</h1>
+
+    <div class="row items-start">
+      <h1 class="col">{{ itinerary.title }}</h1>
+      <q-btn icon="print" flat @click="print" class="no-print"/>
+    </div>
 
     <q-card bordered flat class="row items-center text-body2 q-mb-md bg-red-1">
       <q-card-section>
@@ -28,5 +32,9 @@ import ItineraryDay from './ItineraryDay.vue';
 import ItineraryMap from './ItineraryMap.vue';
 
 defineProps<{itinerary: Itinerary;}>();
+
+function print(){
+  window.print()
+}
 
 </script>

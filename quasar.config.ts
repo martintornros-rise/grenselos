@@ -28,7 +28,8 @@ export default defineConfig((ctx) => {
     css: [
       'app.scss',
       'text.scss',
-      'layout.scss'
+      'layout.scss',
+      'media.scss'
     ],
 
     // https://github.com/quasarframework/quasar/tree/dev/extras

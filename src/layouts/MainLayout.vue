@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHh Lpr lFf" class="relative-position">
+  <q-layout view="hHh Lpr lFf">
     <q-header id="header">
       <q-toolbar id="headerMenu">
         <q-btn flat dense round icon="menu" aria-label="Menu" class="no-decoration" @click="toggleLeftDrawer" />
@@ -15,25 +15,14 @@
 
     <q-drawer v-model="leftDrawerOpen" bordered class="column justify-between">
       <q-list>
-
         <EssentialLink :title="$t('home')" icon="home" route="Home" class="no-decoration"/>
         <EssentialLink :title="$t('itinerary.create')" icon="chat" route="Create" class="no-decoration" />
         <EssentialLink :title="$t('itinerary.view')" icon="map" route="View" class="no-decoration" />
-        <EssentialLink title="Testyta" icon="science" route="Tests" class="no-decoration" />
-
       </q-list>
-
-        <q-item clickable tag="router-link" @click="toggleLeftDrawer" >
-    <!-- <q-item-section avatar>
-      <q-icon name="menu" />
-    </q-item-section> -->
-  </q-item>
-
-
     </q-drawer>
 
-    <q-page-container>
-      <router-view />
+    <q-page-container >
+      <router-view id="section-to-print"/>
     </q-page-container>
   </q-layout>
 </template>
