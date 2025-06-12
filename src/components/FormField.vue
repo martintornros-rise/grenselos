@@ -5,7 +5,7 @@
         <slot name="append"></slot>
       </template>
     </q-input>
-    <div v-if="options" class="row gap-xs items-center text-body2">
+    <div v-if="options" class="row gap-xs items-center text-body2 q-mb-sm">
       <span class="text-grey-8">Lägg till:</span>
       <template v-for="o in options" :key="o">
         <q-btn :label="o" @click="model += (o + ', ')" dense unelevated text-color="grey-8" color="grey-2" no-caps/>
