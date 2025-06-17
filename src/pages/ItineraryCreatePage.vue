@@ -82,10 +82,10 @@
         <p>Skicka informationen till en AI och invänta en färdig reseplan.</p>
         <div class="row gap-sm items-center">
           <q-btn icon="smart_toy" label="Skapa reseplan med AI" @click="callCloudOpenAI" unelevated color="primary" :loading="isGeneratingResponse" />
-          <span v-if="openAISuccess === true" class="text-positive">Reseplanen är skapad</span>
-          <span v-else-if="openAISuccess === false" class="text-negative">Det gick inte att skapa reseplanen, försök igen.</span>
+          <!-- <q-btn v-if="openAISuccess === true"  :to="{name: 'View'}" icon="check" label="Reseplanen är skapad" flat no-caps color="positive" class="no-decoration" /> -->
+          <span v-if="openAISuccess === false" class="text-negative">Det gick inte att skapa reseplanen, försök igen.</span>
         </div>
-        <q-btn icon="map" :label="$t('itinerary.view')" to="/itinerary" :disable="!itineraryStore.itinerary" unelevated color="primary" class="no-decoration"/>
+        <!-- <q-btn icon="map" :label="$t('itinerary.view')" to="/itinerary" :disable="!itineraryStore.itinerary" unelevated color="primary" class="no-decoration"/> -->
       </div>
       <div class="row items-center q-ma-lg text-grey">
         ELLER
@@ -109,13 +109,13 @@
           </div>
           <div class="row gap-sm items-center">
             <q-btn icon="content_paste" :label="$t('paste')" @click="pasteItinerary" unelevated color="primary" />
-            <span v-if="itineraryValidated === true" class="text-positive">Reseplanen är skapad</span>
-            <span v-else-if="itineraryValidated === false" class="text-negative">Det gick inte att skapa reseplanen, försök igen.</span>
+            <!-- <q-btn v-if="itineraryValidated === true"  :to="{name: 'View'}" icon="check" label="Reseplanen är skapad" flat no-caps color="positive" class="no-decoration" /> -->
+            <span v-if="itineraryValidated === false" class="text-negative">Det gick inte att skapa reseplanen, försök igen.</span>
           </div>
 
         </li>
         </ol>
-        <q-btn icon="map" :label="$t('itinerary.view')" to="/itinerary" :disable="!itineraryStore.itinerary" unelevated color="primary" class="no-decoration"/>
+        <!-- <q-btn icon="map" :label="$t('itinerary.view')" to="/itinerary" :disable="!itineraryStore.itinerary" unelevated color="primary" class="no-decoration"/> -->
       </div>
 
 
@@ -136,6 +136,8 @@ import { useItineraryStore } from 'src/stores/itineraryStore';
 import { useParse } from 'src/ts/useParse';
 // import { Itinerary } from 'src/ts/models/models';
 import { computed, onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
+const router = useRouter()
 // import { useClipboard } from '@vueuse/core'
 // import { Itinerary } from 'src/ts/models/models';
 
@@ -215,6 +217,7 @@ async function pasteItinerary() {
   try {
     itineraryStore.itinerary = JSON.parse(text)
     itineraryValidated.value = true
+    await router.push({name: 'View'})
   }
   catch {
     itineraryValidated.value = false
@@ -240,6 +243,7 @@ async function callCloudOpenAI(){
     itineraryStore.itinerary = JSON.parse(response.value.choices[0].message.content)
     openAISuccess.value = true
     isGeneratingResponse.value = false
+    await router.push({name: 'View'})
   }
   catch{
     openAISuccess.value = false
