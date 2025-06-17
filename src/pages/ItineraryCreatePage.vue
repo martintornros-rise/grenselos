@@ -78,7 +78,7 @@
 
     <h2>2. Använd AI</h2>
     <div class="row">
-      <div class="col column gap-sm items-start">
+      <div class="col-12 col-md column gap-sm items-start">
         <p>Skicka informationen till en AI och invänta en färdig reseplan.</p>
         <div class="row gap-sm items-center">
           <q-btn icon="smart_toy" label="Skapa reseplan med AI" @click="callCloudOpenAI" unelevated color="primary" :loading="isGeneratingResponse" />
@@ -90,7 +90,7 @@
       <div class="row items-center q-ma-lg text-grey">
         ELLER
       </div>
-      <div class="col column gap-sm items-start">
+      <div class="col-12 col-md column gap-sm items-start">
         <p>Starta en AI-chatt och arbeta successivt fram en reseplan.</p>
         <ol class="column gap-sm">
           <li>
