@@ -1,8 +1,8 @@
 {
   "name": "grenselos",
   "version": "0.0.1",
-  "description": "Frontdesk Grensløs",
-  "productName": "Frontdesk Grenseløs",
+  "description": "Grensløs",
+  "productName": "Grenseløs",
   "author": "Martin Törnros <martin.tornros@ri.se>",
   "type": "module",
   "private": true,
