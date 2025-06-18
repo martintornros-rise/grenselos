@@ -50,5 +50,6 @@
   "itinerary.form.prompt": "AI-ledetekst",
   "view.ai_disclaimer": "Denne reiseruten genereres automatisk ved hjelp av kunstig intelligens basert på informasjonen som er gitt. I noen tilfeller kan svarene være misvisende eller feil. Det anbefales at du selv undersøker eventuelle saker av spesiell betydning for å sikre at informasjonen er nøyaktig.",
   "view.no_itinerary": "Ingen reiseplan opprettes.",
-  "main.description": "Lag en reiseplan med forslag til ting å oppleve i Østfold, Dalsland og Bohuslän."
+  "main.description": "Lag en reiseplan med forslag til ting å oppleve i Østfold, Dalsland og Bohuslän.",
+  "add": "Legge til"
 }

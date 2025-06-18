@@ -50,5 +50,6 @@
   "itinerary.form.prompt": "AI prompt",
   "view.ai_disclaimer": "This itinerary is automatically generated using AI based on the information provided. In some cases, the answers may be misleading or incorrect. It is recommended that you research any matters of particular importance yourself to ensure the accuracy of the information.",
   "view.no_itinerary": "No travel plan is created.",
-  "main.description": "Create a travel plan with suggestions for things to experience in Østfold, Dalsland and Bohuslän."
+  "main.description": "Create a travel plan with suggestions for things to experience in Østfold, Dalsland and Bohuslän.",
+  "add": "Add"
 }

@@ -50,5 +50,6 @@
   "itinerary.form.prompt": "AI-prompt",
   "view.ai_disclaimer": "Denna reseplan är skapad automatiskt med hjälp av AI baserat på tillhandahållen information. I förekommande fall kan svaren vara vilseledande eller felaktiga. Det rekommenderas att du själv undersöker sådant som är av särskild vikt, för att säkerställa att informationen stämmer.",
   "view.no_itinerary": "Ingen reseplan är skapad.",
-  "main.description": "Skapa en reseplan med förslag på saker att uppleva i Østfold, Dalsland och Bohuslän."
+  "main.description": "Skapa en reseplan med förslag på saker att uppleva i Østfold, Dalsland och Bohuslän.",
+  "add": "Lägg till"
 }
