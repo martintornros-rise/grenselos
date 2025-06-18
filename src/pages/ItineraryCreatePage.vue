@@ -2,23 +2,11 @@
   <q-page class="q-ma-md">
 
     <div class="row justify-between items-center">
-
       <h1>{{ $t('itinerary.create') }}</h1>
       <div class="text-right">
-
         <q-btn icon="refresh" :label="$t('itinerary.create.new')" @click="itineraryStore.resetItinerary" unelevated color="primary" />
-        <!-- <p>{{$t('itinerary.create.clear_warning')}}</p> -->
       </div>
     </div>
-
-    <!-- <h2>1. {{$t('itinerary.create.new')}}</h2> -->
-
-    <!-- <div class="row gap-sm items-center">
-      <q-btn @click="reset" unelevated color="primary">{{ $t('itinerary.create.new') }}</q-btn>
-      <div>{{$t('itinerary.create.clear_warning')}}</div>
-    </div>
-
-    <q-separator class="q-mt-lg q-mb-lg"/> -->
 
     <h2>1. {{$t('itinerary.form.fill_information')}}</h2>
 
@@ -55,7 +43,6 @@
       <FormFieldGroup icon="star">
           <FormField v-model="itineraryStore.promptParts.extra" :label="$t('itinerary.form.extra')"/>
       </FormFieldGroup>
-      <!-- <q-input v-model="prompt" type="textarea" label="Förslag på prompt" /> -->
       <q-expansion-item
         expand-separator
         icon="terminal"
@@ -66,10 +53,6 @@
           <q-card-section>
             {{ prompt }}
           </q-card-section>
-          <!-- <q-btn icon="content_copy" size="sm" flat class="absolute-top-right q-ma-sm q-pa-sm" @click="copy(prompt)">
-            <span v-if="!copied">Copy</span>
-            <span v-else>Copied!</span>
-          </q-btn> -->
         </q-card>
       </q-expansion-item>
     </div>
@@ -82,10 +65,8 @@
         <p>{{ $t('itinerary.form.ai_api') }}</p>
         <div class="row gap-sm items-center">
           <q-btn icon="smart_toy" :label="t('itinerary.form.ai_generate')" @click="callCloudOpenAI" unelevated color="primary" :loading="isGeneratingResponse" />
-          <!-- <q-btn v-if="openAISuccess === true"  :to="{name: 'View'}" icon="check" label="Reseplanen är skapad" flat no-caps color="positive" class="no-decoration" /> -->
           <span v-if="openAISuccess === false" class="text-negative">{{ $t('itinerary.form.ai_generate_error') }}</span>
         </div>
-        <!-- <q-btn icon="map" :label="$t('itinerary.view')" to="/itinerary" :disable="!itineraryStore.itinerary" unelevated color="primary" class="no-decoration"/> -->
       </div>
       <div class="row items-center q-ma-lg text-grey">
         {{ $t('OR') }}
@@ -94,13 +75,10 @@
         <p>{{ $t('itinerary.form.ai_start_chat') }}</p>
         <ol class="column gap-sm">
           <li>
-        <!-- <div class="row items-start"> -->
           <div class="col">{{ $t('itinerary.form.ai_chat_new_window') }}</div>
           <div class="row gap-sm">
             <q-btn icon="smart_toy" :label="$t('itinerary.form.ai_start_chat_btn')" @click="startChat" unelevated color="primary" />
-            <!-- <q-btn icon="smart_toy" label="Starta Blixten-chatt" @click="startCustomChat('https://chatgpt.com/g/g-68403e5fd2948191900e0d910c368594-granslos')" unelevated color="primary" /> -->
           </div>
-        <!-- </div> -->
         </li>
         <li>
 
@@ -109,22 +87,15 @@
           </div>
           <div class="row gap-sm items-center">
             <q-btn icon="content_paste" :label="$t('paste')" @click="pasteItinerary" unelevated color="primary" />
-            <!-- <q-btn v-if="itineraryValidated === true"  :to="{name: 'View'}" icon="check" label="Reseplanen är skapad" flat no-caps color="positive" class="no-decoration" /> -->
             <span v-if="itineraryValidated === false" class="text-negative">{{ $t('itinerary.form.ai_generate_error') }}</span>
           </div>
 
         </li>
         </ol>
-        <!-- <q-btn icon="map" :label="$t('itinerary.view')" to="/itinerary" :disable="!itineraryStore.itinerary" unelevated color="primary" class="no-decoration"/> -->
       </div>
 
 
     </div>
-
-    <!-- <q-separator class="q-mt-lg q-mb-lg"/>
-
-    <h2>3. Visa reseplan</h2>
-    <q-btn icon="map" :label="$t('itinerary.view')" to="/itinerary" :disable="!itineraryStore.itinerary" unelevated color="primary" class="no-decoration"/> -->
 
   </q-page>
 </template>
@@ -154,7 +125,7 @@ const p = useParse()
 // const prompt = 'En familj på 2 vuxna och 2 tonåringar kommer vara en vecka i dalsland och gränserna mot norge. de gillar äventyr men är rädda för vatten. ge förslag på en rutt med en aktivitet per dag. de tältar om det behövs men sover gärna bekvämt. de gillar fiskpinnar.'
 const prompt = computed({
   get () {
-    let p = t('prompt.intro') + '\n\n'
+    let p = ''
     if(itineraryStore.promptParts.who){
       p += t('prompt.who') + ": " + itineraryStore.promptParts.who + "\n\n"
     }
@@ -236,11 +207,7 @@ const openAISuccess = ref(undefined as true | false | undefined)
 async function callCloudOpenAI(){
   isGeneratingResponse.value = true
 
-  const exportInstructions = t('prompt.export_api')
-
-  const promptFinal = prompt.value + exportInstructions + '\n\n' + promptJSON
-
-  response.value = await p.callCloudOpenAI(promptFinal)
+  response.value = await p.callCloudOpenAI(t('prompt.intro'), prompt.value, t('prompt.export_api') + '\n\n' + promptJSON)
   try{
     itineraryStore.itinerary = JSON.parse(response.value.choices[0].message.content)
     openAISuccess.value = true

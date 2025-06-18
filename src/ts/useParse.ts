@@ -13,8 +13,8 @@ export function useParse() {
     return r
   }
 
-  async function callCloudOpenAI(prompt: string){
-    return await Parse.Cloud.run("callOpenAI", {prompt: prompt});
+  async function callCloudOpenAI(intro: string, prompt: string, outro: string){
+    return await Parse.Cloud.run("callOpenAI", {intro, prompt, outro});
   }
 
   return {
