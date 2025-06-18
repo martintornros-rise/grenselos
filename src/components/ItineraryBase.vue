@@ -11,7 +11,7 @@
       <q-icon name="smart_toy" size="sm"/>
       </q-card-section>
       <q-card-section class="col q-pa-xs ">
-        Denna reseplan är skapad automatiskt med hjälp av AI baserat på tillhandahållen information. I förekommande fall kan svaren vara vilseledande eller felaktiga. Det rekommenderas att du själv undersöker sådant som är av särskild vikt, för att säkerställa att informationen stämmer.
+        {{ $t('view.ai_disclaimer') }}
       </q-card-section>
 
     </q-card>

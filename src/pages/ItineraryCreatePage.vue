@@ -20,47 +20,47 @@
 
     <q-separator class="q-mt-lg q-mb-lg"/> -->
 
-    <h2>1. Fyll i information</h2>
+    <h2>1. {{$t('itinerary.form.fill_information')}}</h2>
 
     <div class="column gap-sm">
 
       <FormFieldGroup icon="family_restroom">
-        <FormField v-model="itineraryStore.promptParts.who" label="Vem/vilka önskar information?" :options="['Familj', 'Vuxet par']"/>
+        <FormField v-model="itineraryStore.promptParts.who" :label="$t('itinerary.form.who')" :options="[$t('form.values.family'), $t('form.values.adult_couple')]"/>
       </FormFieldGroup>
 
       <FormFieldGroup icon="info">
-        <FormField v-model="itineraryStore.promptParts.what" label="Vilken information önskas?"/>
-        <FormField v-model="itineraryStore.promptParts.likes" label="Något särskilt som besökaren gillar?"/>
-        <FormField v-model="itineraryStore.promptParts.avoid" label="Något som besökaren vill undvika?"/>
+        <FormField v-model="itineraryStore.promptParts.what" :label="$t('itinerary.form.what')"/>
+        <FormField v-model="itineraryStore.promptParts.likes" :label="$t('itinerary.form.likes')"/>
+        <FormField v-model="itineraryStore.promptParts.avoid" :label="$t('itinerary.form.avoid')"/>
       </FormFieldGroup>
 
       <FormFieldGroup icon="location_on">
-          <FormField v-model="itineraryStore.promptParts.where" label="Vilket geografiskt område?" :options="['Østfold', 'Dalsland', 'Bohuslän']"/>
-          <FormField v-model="itineraryStore.promptParts.whereStart" label="Var ska resan starta?">
+          <FormField v-model="itineraryStore.promptParts.where" :label="$t('itinerary.form.where')" :options="['Østfold', 'Dalsland', 'Bohuslän']"/>
+          <FormField v-model="itineraryStore.promptParts.whereStart" :label="$t('itinerary.form.whereStart')">
             <template v-slot:append>
               <q-btn icon="location_on" @click="setCurrentStartLocation" dense flat/>
             </template>
           </FormField>
-          <FormField v-model="itineraryStore.promptParts.whereEnd" label="Var ska resan sluta?"/>
+          <FormField v-model="itineraryStore.promptParts.whereEnd" :label="$t('itinerary.form.whereEnd')"/>
       </FormFieldGroup>
 
       <FormFieldGroup icon="accessibility">
-        <FormField v-model="itineraryStore.promptParts.accessibility" label="Tillgänglighetsaspekter" :options="['Bilparkering', 'Kollektivtrafik', 'Barnvagn', 'Rullstol', 'Tolk' ]"/>
+        <FormField v-model="itineraryStore.promptParts.accessibility" :label="$t('itinerary.form.accessibility')" :options="[$t('form.values.car_parking'), $t('form.values.public_transport'), $t('form.values.pram'), $t('form.values.wheelchair'), $t('form.values.interpreter') ]"/>
       </FormFieldGroup>
 
       <FormFieldGroup icon="calendar_month">
-          <FormField v-model="itineraryStore.promptParts.when" label="Vilken tidsperiod?"/>
+          <FormField v-model="itineraryStore.promptParts.when" :label="$t('itinerary.form.when')"/>
       </FormFieldGroup>
 
       <FormFieldGroup icon="star">
-          <FormField v-model="itineraryStore.promptParts.extra" label="Extra information?"/>
+          <FormField v-model="itineraryStore.promptParts.extra" :label="$t('itinerary.form.extra')"/>
       </FormFieldGroup>
       <!-- <q-input v-model="prompt" type="textarea" label="Förslag på prompt" /> -->
       <q-expansion-item
         expand-separator
         icon="terminal"
-        label="AI-prompt"
-        caption="Visa den information som skickas till AI:n"
+        :label="$t('itinerary.form.prompt')"
+        :caption="$t('itinerary.form.view_prompt')"
       >
         <q-card class="prompt bg-grey-3 relative-position" flat bordered>
           <q-card-section>
@@ -76,28 +76,28 @@
 
     <q-separator class="q-mt-lg q-mb-lg"/>
 
-    <h2>2. Använd AI</h2>
+    <h2>2. {{ $t('itinerary.form.use_AI') }}</h2>
     <div class="row">
       <div class="col-12 col-md column gap-sm items-start">
-        <p>Skicka informationen till en AI och invänta en färdig reseplan.</p>
+        <p>{{ $t('itinerary.form.ai_api') }}</p>
         <div class="row gap-sm items-center">
-          <q-btn icon="smart_toy" label="Skapa reseplan med AI" @click="callCloudOpenAI" unelevated color="primary" :loading="isGeneratingResponse" />
+          <q-btn icon="smart_toy" :label="t('itinerary.form.ai_generate')" @click="callCloudOpenAI" unelevated color="primary" :loading="isGeneratingResponse" />
           <!-- <q-btn v-if="openAISuccess === true"  :to="{name: 'View'}" icon="check" label="Reseplanen är skapad" flat no-caps color="positive" class="no-decoration" /> -->
-          <span v-if="openAISuccess === false" class="text-negative">Det gick inte att skapa reseplanen, försök igen.</span>
+          <span v-if="openAISuccess === false" class="text-negative">{{ $t('itinerary.form.ai_generate_error') }}</span>
         </div>
         <!-- <q-btn icon="map" :label="$t('itinerary.view')" to="/itinerary" :disable="!itineraryStore.itinerary" unelevated color="primary" class="no-decoration"/> -->
       </div>
       <div class="row items-center q-ma-lg text-grey">
-        ELLER
+        {{ $t('OR') }}
       </div>
       <div class="col-12 col-md column gap-sm items-start">
-        <p>Starta en AI-chatt och arbeta successivt fram en reseplan.</p>
+        <p>{{ $t('itinerary.form.ai_start_chat') }}</p>
         <ol class="column gap-sm">
           <li>
         <!-- <div class="row items-start"> -->
-          <div class="col">Starta chatt i nytt fönster.</div>
+          <div class="col">{{ $t('itinerary.form.ai_chat_new_window') }}</div>
           <div class="row gap-sm">
-            <q-btn icon="smart_toy" label="Starta chatt" @click="startChat" unelevated color="primary" />
+            <q-btn icon="smart_toy" :label="$t('itinerary.form.ai_start_chat_btn')" @click="startChat" unelevated color="primary" />
             <!-- <q-btn icon="smart_toy" label="Starta Blixten-chatt" @click="startCustomChat('https://chatgpt.com/g/g-68403e5fd2948191900e0d910c368594-granslos')" unelevated color="primary" /> -->
           </div>
         <!-- </div> -->
@@ -105,12 +105,12 @@
         <li>
 
           <div class="col">
-            När ni är nöjda med reseplanen: Be chattbotten exportera som JSON, kopiera resultatet och klistra in nedan.
+            {{ $t('itinerary.form.ai_JSON_instructions') }}
           </div>
           <div class="row gap-sm items-center">
             <q-btn icon="content_paste" :label="$t('paste')" @click="pasteItinerary" unelevated color="primary" />
             <!-- <q-btn v-if="itineraryValidated === true"  :to="{name: 'View'}" icon="check" label="Reseplanen är skapad" flat no-caps color="positive" class="no-decoration" /> -->
-            <span v-if="itineraryValidated === false" class="text-negative">Det gick inte att skapa reseplanen, försök igen.</span>
+            <span v-if="itineraryValidated === false" class="text-negative">{{ $t('itinerary.form.ai_generate_error') }}</span>
           </div>
 
         </li>
@@ -138,6 +138,8 @@ import { useParse } from 'src/ts/useParse';
 import { computed, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 const router = useRouter()
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 // import { useClipboard } from '@vueuse/core'
 // import { Itinerary } from 'src/ts/models/models';
 
@@ -152,36 +154,36 @@ const p = useParse()
 // const prompt = 'En familj på 2 vuxna och 2 tonåringar kommer vara en vecka i dalsland och gränserna mot norge. de gillar äventyr men är rädda för vatten. ge förslag på en rutt med en aktivitet per dag. de tältar om det behövs men sover gärna bekvämt. de gillar fiskpinnar.'
 const prompt = computed({
   get () {
-    let p = 'Du är ett stöd till en turistbyrå eller guide som har fått en fråga från turister eller besökare.\n\n'
+    let p = t('prompt.intro') + '\n\n'
     if(itineraryStore.promptParts.who){
-      p += "Beskrivning av vem/vilka som önskar information: " + itineraryStore.promptParts.who + "\n\n"
+      p += t('prompt.who') + ": " + itineraryStore.promptParts.who + "\n\n"
     }
     if(itineraryStore.promptParts.what){
-      p += "Beskrivning av vad för typ av information önskas: " + itineraryStore.promptParts.what + "\n\n"
+      p += t('prompt.what')+ ": " + itineraryStore.promptParts.what + "\n\n"
     }
     if(itineraryStore.promptParts.likes){
-      p += "Besökaren gillar: " + itineraryStore.promptParts.likes + "\n\n"
+      p += t('prompt.likes') + ": " + itineraryStore.promptParts.likes + "\n\n"
     }
     if(itineraryStore.promptParts.avoid){
-      p += "Besökaren vill undvika: " + itineraryStore.promptParts.avoid + "\n\n"
+      p += t('prompt.avoid') + ": " + itineraryStore.promptParts.avoid + "\n\n"
     }
     if(itineraryStore.promptParts.where){
-      p += "Geografiskt område: " + itineraryStore.promptParts.where + "\n\n"
+      p += t('prompt.where') + ": " + itineraryStore.promptParts.where + "\n\n"
     }
     if(itineraryStore.promptParts.whereStart){
-      p += "Resans start: " + itineraryStore.promptParts.whereStart + "\n\n"
+      p += t('prompt.whereStart') + ": " + itineraryStore.promptParts.whereStart + "\n\n"
     }
     if(itineraryStore.promptParts.whereEnd){
-      p += "Resans slut:  " + itineraryStore.promptParts.whereEnd + "\n\n"
+      p += t('prompt.whereEnd') + ":  " + itineraryStore.promptParts.whereEnd + "\n\n"
     }
     if(itineraryStore.promptParts.accessibility){
-      p += "Tillgänglighetsaspekter:  " + itineraryStore.promptParts.accessibility + "\n\n"
+      p += t('prompt.accessibility') + ": " + itineraryStore.promptParts.accessibility + "\n\n"
     }
     if(itineraryStore.promptParts.when){
-      p += "Tidsperiod: " + itineraryStore.promptParts.when + "\n\n"
+      p += t('prompt.when') + ": " + itineraryStore.promptParts.when + "\n\n"
     }
     if(itineraryStore.promptParts.extra){
-      p += "Extra information: " + itineraryStore.promptParts.extra + "\n\n"
+      p += t('prompt.extra') + ": " + itineraryStore.promptParts.extra + "\n\n"
     }
     return p
   },
@@ -199,7 +201,7 @@ function setCurrentStartLocation(){
 function startChat () {
   // Blixten: https://chatgpt.com/share/68414aaa-ba24-8012-a954-013d48549684
 
-  const exportInstructions = 'När reseplanen är klar, fråga om användaren vill exportera reseplanen. Om hen svarar ja, exportera reseplanen som JSON enligt:'
+  const exportInstructions = t('prompt.export')
 
   const promptFinal = prompt.value + exportInstructions + '\n\n' + promptJSON
 
@@ -234,7 +236,7 @@ const openAISuccess = ref(undefined as true | false | undefined)
 async function callCloudOpenAI(){
   isGeneratingResponse.value = true
 
-  const exportInstructions = 'Returnera reseplanen som JSON enligt:'
+  const exportInstructions = t('prompt.export_api')
 
   const promptFinal = prompt.value + exportInstructions + '\n\n' + promptJSON
 

@@ -8,8 +8,8 @@
     </div>
 
     <div v-else>
-      <p>Ingen reseplan är skapad.</p>
-      <q-btn label="Skapa ny reseplan" :to="{name: 'Create'}" unelevated color="primary"/>
+      <p>{{ $t('view.no_itinerary') }}</p>
+      <q-btn :label="$t('itinerary.create.new')" :to="{name: 'Create'}" unelevated color="primary"/>
     </div>
 
   </q-page>
