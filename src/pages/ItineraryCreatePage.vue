@@ -165,7 +165,7 @@ function startChat () {
 
   const exportInstructions = t('prompt.export')
 
-  const promptFinal = prompt.value + exportInstructions + '\n\n' + promptJSON
+  const promptFinal = t('prompt.intro') + '\n\n' + prompt.value + exportInstructions + '\n\n' + promptJSON
 
   window.open(encodeURI('https://chat.openai.com/?q=' + promptFinal))
 }
