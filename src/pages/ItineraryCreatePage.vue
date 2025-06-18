@@ -105,24 +105,15 @@ import FormField from 'src/components/FormField.vue';
 import FormFieldGroup from 'src/components/FormFieldGroup.vue';
 import { useItineraryStore } from 'src/stores/itineraryStore';
 import { useParse } from 'src/ts/useParse';
-// import { Itinerary } from 'src/ts/models/models';
 import { computed, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 const router = useRouter()
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
-// import { useClipboard } from '@vueuse/core'
-// import { Itinerary } from 'src/ts/models/models';
-
-// const source = ref('')
-// const { text } = useClipboard({ source })
 
 const itineraryStore = useItineraryStore()
 const p = useParse()
 
-// const whereSelected = ref([] as string[])
-
-// const prompt = 'En familj på 2 vuxna och 2 tonåringar kommer vara en vecka i dalsland och gränserna mot norge. de gillar äventyr men är rädda för vatten. ge förslag på en rutt med en aktivitet per dag. de tältar om det behövs men sover gärna bekvämt. de gillar fiskpinnar.'
 const prompt = computed({
   get () {
     let p = ''
@@ -209,7 +200,7 @@ async function callCloudOpenAI(){
 
   response.value = await p.callCloudOpenAI(t('prompt.intro'), prompt.value, t('prompt.export_api') + '\n\n' + promptJSON)
   try{
-    itineraryStore.itinerary = JSON.parse(response.value.choices[0].message.content)
+    itineraryStore.itinerary = JSON.parse(response.value.choices[0].message.content);
     openAISuccess.value = true
     isGeneratingResponse.value = false
     await router.push({name: 'View'})

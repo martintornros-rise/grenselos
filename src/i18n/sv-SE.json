@@ -27,7 +27,7 @@
   "itinerary.form.ai_chat_new_window": "Starta chatt i nytt fönster.",
   "itinerary.form.ai_start_chat_btn": "Starta chatt",
   "itinerary.form.ai_JSON_instructions": "När ni är nöjda med reseplanen: Be chattbotten exportera som JSON, kopiera resultatet och klistra in nedan.",
-  "prompt.intro": "Du är ett stöd till en turistbyrå eller guide som har fått en fråga från turister eller besökare.",
+  "prompt.intro": "Du är ett stöd till en turistbyrå som ska guida turister eller besökare i Østfold, Dalsland och Bohuslän.",
   "prompt.who": "Beskrivning av vem/vilka som önskar information",
   "prompt.what": "Beskrivning av vad för typ av information önskas",
   "prompt.likes": "Besökaren gillar",
